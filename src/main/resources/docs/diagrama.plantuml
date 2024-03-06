@@ -1,0 +1,130 @@
+@startuml
+
+class Produto { 
+    - id: long
+    - nome: string
+    - preco: double
+    - descricao: string
+    - estoque: int
+    - imgProduto: string
+    - tamanho: Tamanho
+    - cor: Cor
+}
+
+class ItemCarrinho{
+    - id: long
+    - quantidade: int
+    - produto: Produto
+}
+
+class CarrinhoDeCompras {
+    - itens: ItemCarrinho[]
+}
+
+enum Cor{
+    BRANCO,
+    VERMELHO,
+    VERDE,
+    AZUL
+}
+
+enum Tamanho {
+    - 38,
+    - 39,
+    - 40,
+    - 41,
+    - 42,
+    - 43,
+    - 44,
+    - 45
+}
+
+class Pagamento {
+    - id: long
+    - valor: double
+    - metodo: MetodoDePagamento
+    - status: StatusPagamento
+    - dataPagamento: localDate
+    - carrinho: CarrinhoDeCompras
+}
+
+enum MetodoDePagamento {
+    CARTAO_DE_CREDITO,
+    CARTAO_DE_DEBITO,
+    PIX
+}
+
+enum StatusPagamento {
+    PENDENTE,
+    APROVADO,
+    REJEITADO,
+    CANCELADO
+}
+
+class Perfil {
+    ADM,
+    USER,
+    VENDEDOR
+}
+
+class Pessoa {
+    - id: long
+    - nome: string
+    - cpf: string
+    - telefone: string
+    - e-mail: string
+    - dataNascimento: Data
+    - perfil: Perfil
+    - endereco: Endereco
+}
+
+class Endereco {
+    - id: long
+    - cep: int
+    - numero: int
+    - bairro: string
+    - complemento: string
+    - logradouro: string
+    - cidade: Cidade
+}
+
+class Cidade {
+    - id: long
+    - nome: string,
+    - estado: Estado
+}
+
+class Estado {
+    - id: long
+    - nome: string
+    - sigla: string
+}
+
+
+Produto "1" --> "1..*" ItemCarrinho
+
+Produto "1" --> "1" Cor
+
+Produto "1" --> "1" Tamanho
+
+CarrinhoDeCompras "1" --> "0..*" ItemCarrinho
+
+Pessoa "1" --> "1" Perfil
+
+Pessoa "1" --> "1" CarrinhoDeCompras
+
+Pessoa "1" --> "1..*" Endereco
+
+Endereco "1" --> "1" Cidade
+
+Cidade "1" --> "0..*" Estado
+
+Pagamento "1" --> "1..*" CarrinhoDeCompras
+
+Pagamento "1" --> "1" Pessoa
+
+Pagamento "1" --> "1" MetodoDePagamento
+
+Pagamento "1" --> "1" StatusPagamento
+
+@enduml

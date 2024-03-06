@@ -3,16 +3,17 @@ package org.acme.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum MetodoDePagamento {
+public enum Perfil {
 
-    CARTAO_DE_CREDITO(1, "Cartão de Credito"),
-    CARTAO_DE_DEBITO(2, "Cartão de Debito"),
-    PIX(3, "Pix");
+    ADM(1, "Admin"),
+    USER(2, "Usuario"),
+    VENDEDOR(3, "Vendedor"),
+    ANALISTA(4, "Analista");
 
     private final Integer id;
     private final String label;
 
-    MetodoDePagamento(Integer id, String label) {
+    Perfil(Integer id, String label) {
         this.id = id;
         this.label = label;
     }
@@ -25,13 +26,13 @@ public enum MetodoDePagamento {
         return label;
     }
 
-    public static MetodoDePagamento valueOf(Integer id) throws IllegalArgumentException {
+    public static Perfil valueOf(Integer id) throws IllegalArgumentException {
         if (id == null)
             return null;
 
-        for (MetodoDePagamento metodoDePagamento : MetodoDePagamento.values()) {
-            if (metodoDePagamento.getId().equals(id))
-                return metodoDePagamento;
+        for (Perfil perfil : Perfil.values()) {
+            if (perfil.getId().equals(id))
+                return perfil;
         }
 
         throw new IllegalArgumentException("id Invalido" + id);

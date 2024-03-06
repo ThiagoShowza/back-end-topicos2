@@ -12,7 +12,6 @@ public class DefaultEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     public Long getId() {
         return id;
     }
@@ -20,5 +19,5 @@ public class DefaultEntity {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
 }

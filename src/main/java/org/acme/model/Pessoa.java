@@ -35,7 +35,4 @@ public class Pessoa extends DefaultEntity {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-
-
-    
 }

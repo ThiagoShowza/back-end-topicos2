@@ -1,12 +1,18 @@
 package org.acme.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
-public class Cidade extends DefaultEntity{
+@Entity
+public class Cidade extends DefaultEntity {
 
     @NotBlank(message = "O nome não pode ser nulo")
     private String nome;
+
+    @ManyToOne
+    @JoinColumn(name = "id_estado")
     private Estado estado;
-    
+
 }
