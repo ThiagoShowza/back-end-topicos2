@@ -7,8 +7,7 @@ public enum Perfil {
 
     ADM(1, "Admin"),
     USER(2, "Usuario"),
-    VENDEDOR(3, "Vendedor"),
-    ANALISTA(4, "Analista");
+    VENDEDOR(3, "Vendedor");
 
     private final Integer id;
     private final String label;
