@@ -2,6 +2,11 @@ package org.acme.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Getter;
+
+
+@Getter
+
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Perfil {
 
@@ -17,13 +22,6 @@ public enum Perfil {
         this.label = label;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getLabel() {
-        return label;
-    }
 
     public static Perfil valueOf(Integer id) throws IllegalArgumentException {
         if (id == null)

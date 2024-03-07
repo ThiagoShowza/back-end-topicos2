@@ -2,6 +2,9 @@ package org.acme.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Getter;
+
+@Getter
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum MetodoDePagamento {
 
@@ -15,14 +18,6 @@ public enum MetodoDePagamento {
     MetodoDePagamento(Integer id, String label) {
         this.id = id;
         this.label = label;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getLabel() {
-        return label;
     }
 
     public static MetodoDePagamento valueOf(Integer id) throws IllegalArgumentException {

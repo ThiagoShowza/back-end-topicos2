@@ -3,6 +3,13 @@ package org.acme.model;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
 @Entity
 public class Estado {
 
