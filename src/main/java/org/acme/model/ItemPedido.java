@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,11 +12,11 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class ItemCarrinho {
+public class ItemPedido {
 
     @NotBlank(message = "Informe a quantidade de itens")
-    
-    private int quantidade;
+    @Positive(message = "O CEP não pode ser 0 ou negativo")
+    private Integer quantidade;
 
     @ManyToOne
     @JoinColumn(name = "id_ tenis")

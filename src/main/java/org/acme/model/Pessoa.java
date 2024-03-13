@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,10 @@ public class Pessoa extends DefaultEntity {
 
     @NotBlank
     private String nome;
+
+    @NotBlank
+    @Size(min = 4, max = 25, message = "A senha deve ter entre de 4 a 25 caracteres")
+    private String senha;
 
     @NotBlank
     @CPF

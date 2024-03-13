@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 
-
 @Getter
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -21,7 +20,6 @@ public enum Perfil {
         this.id = id;
         this.label = label;
     }
-
 
     public static Perfil valueOf(Integer id) throws IllegalArgumentException {
         if (id == null)

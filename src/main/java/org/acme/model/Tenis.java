@@ -18,9 +18,6 @@ public class Tenis extends DefaultEntity {
     @NotBlank(message = "Insira o preco")
     private Double preco;
 
-    @NotBlank(message = "Insira o preço de compra")
-    private Double precoCompra;
-
     private String descricao;
 
     private String nomeImagem;
@@ -28,6 +25,6 @@ public class Tenis extends DefaultEntity {
     @NotBlank(message = "Insira a quantidade de estoque")
     private int estoque;
 
-    // private imgProduto
+    private String imgProduto;
 
 }

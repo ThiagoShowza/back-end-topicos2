@@ -20,7 +20,6 @@ public enum Tamanho {
     private final Integer id;
     private final Integer numero;
 
-
     private Tamanho(Integer id, Integer numero) {
         this.id = id;
         this.numero = numero;
