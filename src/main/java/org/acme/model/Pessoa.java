@@ -42,9 +42,9 @@ public class Pessoa extends DefaultEntity {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-
     @OneToOne
     @JoinColumn(name = "id_perfil")
     private Perfil perfil;
 
+    private String nomeImagem;
 }

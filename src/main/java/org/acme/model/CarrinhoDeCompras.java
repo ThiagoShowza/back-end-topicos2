@@ -12,5 +12,7 @@ import lombok.Setter;
 @Entity
 public class CarrinhoDeCompras {
     
+    private Pessoa usuario;
+
     private List<ItemCarrinho> itens;
 }

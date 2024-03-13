@@ -1,6 +1,5 @@
 package org.acme.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,9 +15,10 @@ import lombok.Setter;
 public class ItemCarrinho {
 
     @NotBlank(message = "Informe a quantidade de itens")
+    
     private int quantidade;
 
     @ManyToOne
-    @JoinColumn(name = "id_ produto")
-    private Produto produto;
+    @JoinColumn(name = "id_ tenis")
+    private Tenis tenis;
 }
