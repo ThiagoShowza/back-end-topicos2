@@ -20,11 +20,9 @@ public class Tenis extends DefaultEntity {
 
     private String descricao;
 
-    private String nomeImagem;
+    private String imgProduto;
 
     @NotBlank(message = "Insira a quantidade de estoque")
     private int estoque;
-
-    private String imgProduto;
 
 }

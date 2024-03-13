@@ -9,5 +9,5 @@ public record PagamentoDTO(
         @NotBlank(message = "O método de pagamento não pode ser nulo") Integer idMetodo,
         @NotBlank(message = "O status do pagamento não pode ser nulo") Integer idStatus,
         @NotNull(message = "A data de pagamento não pode ser nula") LocalDate dataPagamento,
-        PedidoDTO pedido
+        Long idPedido
 ) {}

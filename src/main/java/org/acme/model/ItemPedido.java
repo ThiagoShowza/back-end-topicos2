@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class ItemPedido {
+public class ItemPedido extends DefaultEntity {
 
     @NotBlank(message = "Informe a quantidade de itens")
     @Positive(message = "O CEP não pode ser 0 ou negativo")

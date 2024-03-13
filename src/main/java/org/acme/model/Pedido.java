@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class Pedido {
+public class Pedido extends DefaultEntity{
     
     @NotNull(message = "A pessoa associada ao pedido não pode ser nula")
     private Pessoa pessoa;

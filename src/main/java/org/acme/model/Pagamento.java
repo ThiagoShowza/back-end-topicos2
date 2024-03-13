@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class Pagamento {
+public class Pagamento extends DefaultEntity{
 
 
     @Positive(message = "O valor total deve ser maior que zero")

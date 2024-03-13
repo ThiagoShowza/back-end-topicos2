@@ -8,7 +8,7 @@ public record ItemPedidoDTO(
     @NotBlank(message = "Informe a quantidade de itens")
     @Positive(message = "O CEP não pode ser 0 ou negativo")
     Integer quantidade,
-    TenisDTO tenis
+    Long idTenis
 
 ) {
 }

@@ -1,5 +1,6 @@
 package org.acme.model;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -27,7 +28,7 @@ public class Endereco extends DefaultEntity {
 
     @Column(length = 8, nullable = false)
     @Positive(message = "O CEP não pode ser 0 ou negativo")
-    private int numero;
+    private Integer numero;
 
     @NotBlank(message = "Informe o bairro")
     @Column(length = 60, nullable = false)

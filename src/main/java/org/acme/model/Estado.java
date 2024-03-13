@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class Estado {
+public class Estado extends DefaultEntity {
 
     @Column(length = 60, nullable = false)
     @NotBlank(message = "O nome do estado não pode ser nulo")
