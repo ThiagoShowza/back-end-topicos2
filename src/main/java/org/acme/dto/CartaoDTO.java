@@ -14,7 +14,7 @@ public record CartaoDTO(
     @NotBlank(message = "O campo cvc não pode ser nulo")
     Integer cvc,
     @NotBlank(message = "O campo bandeira não pode ser nulo")
-    Integer idBandeira
+    Long idBandeira
 
 
 

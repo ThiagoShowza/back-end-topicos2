@@ -45,6 +45,13 @@
     </dependency>
 
 
+    <!-- Dependencia para Imagem "PartType"-->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-multipart</artifactId>
+    </dependency>
+
+
 
     <dependency>
       <groupId>io.quarkus</groupId>
