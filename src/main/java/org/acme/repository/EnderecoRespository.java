@@ -11,7 +11,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class EnderecoRespository implements PanacheRepository<Endereco>{
 
     public List<Endereco> findById(String cidade){
-        return find("pessoa.id = ?1",cidade).list(); 
+        return find("cidade.id = ?1",cidade).list(); 
     }
     
 }

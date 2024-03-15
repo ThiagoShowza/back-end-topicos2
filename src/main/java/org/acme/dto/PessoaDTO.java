@@ -1,6 +1,7 @@
 package org.acme.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -17,7 +18,7 @@ public record PessoaDTO(
         @Pattern(regexp = "^$|^[0-9]{10,15}$", message = "Número de telefone inválido") String telefone,
         @NotBlank @Email String email,
         @Past(message = "Data de nascimento inválida") LocalDate dataNascimento,
-        EnderecoDTO endereco,
+        List<EnderecoDTO> ListaEndereco,
         Integer idperfil,
         String nomeImagem) {
 }

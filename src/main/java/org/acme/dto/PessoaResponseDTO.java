@@ -1,6 +1,7 @@
 package org.acme.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.acme.model.Perfil;
 import org.acme.model.Pessoa;
@@ -12,22 +13,23 @@ public record PessoaResponseDTO(
         String telefone,
         String email,
         LocalDate dataNascimento,
-        EnderecoResponseDTO endereco,
+        List<EnderecoResponseDTO> listaEndereco,
         Perfil perfil,
         String nomeImagem
 
 ) {
-    public static PessoaResponseDTO valueOf(Pessoa pessoa){
+    public static PessoaResponseDTO valueOf(Pessoa pessoa) {
         return new PessoaResponseDTO(
-            pessoa.getNome(),
-            pessoa.getSenha(), 
-            pessoa.getCpf(), 
-            pessoa.getTelefone(), 
-            pessoa.getEmail(), 
-            pessoa.getDataNascimento(), 
-            EnderecoResponseDTO.valueOf(pessoa.getEndereco()), 
-            pessoa.getPerfil(), 
-            pessoa.getNomeImagem());
+                pessoa.getNome(),
+                pessoa.getSenha(),
+                pessoa.getCpf(),
+                pessoa.getTelefone(),
+                pessoa.getEmail(),
+                pessoa.getDataNascimento(),
+                pessoa.getListaEndereco().stream().
+                map(t -> EnderecoResponseDTO.valueOf(t)).toList(),
+                pessoa.getPerfil(),
+                pessoa.getNomeImagem());
 
     }
 

@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -45,7 +46,7 @@ public class Pessoa extends DefaultEntity {
 
     @OneToMany
     @JoinColumn(name = "id_endereco")
-    private Endereco endereco;
+    private List<Endereco> ListaEndereco;
 
     @OneToOne
     @JoinColumn(name = "id_perfil")
