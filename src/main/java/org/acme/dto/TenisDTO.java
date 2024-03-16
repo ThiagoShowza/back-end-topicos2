@@ -7,7 +7,10 @@ public record TenisDTO(
         @NotBlank(message = "Insira o nome do produto") String nome,
         @NotNull(message = "Insira o preco") Double preco,
         String descricao,
+        @NotNull(message = "Insira a quantidade de estoque") Integer estoque,
         String imgProduto,
-        @NotNull(message = "Insira a quantidade de estoque") Integer estoque) {
+        Integer idTamanho,
+        Integer idCor
+        ) {
 
 }

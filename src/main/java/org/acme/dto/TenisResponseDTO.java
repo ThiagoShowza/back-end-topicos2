@@ -1,5 +1,7 @@
 package org.acme.dto;
 
+import org.acme.model.Cor;
+import org.acme.model.Tamanho;
 import org.acme.model.Tenis;
 
 public record TenisResponseDTO(
@@ -7,8 +9,10 @@ public record TenisResponseDTO(
         String nome,
         Double preco,
         String descricao,
+        Integer estoque,
         String imgProduto,
-        Integer estoque
+        Tamanho tamanho,
+        Cor cor
 
 ) {
     public static TenisResponseDTO valueOf(Tenis tenis) {
@@ -16,8 +20,10 @@ public record TenisResponseDTO(
                 tenis.getNome(),
                 tenis.getPreco(),
                 tenis.getDescricao(),
+                tenis.getEstoque(),
                 tenis.getImgProduto(),
-                tenis.getEstoque());
+                tenis.getTamanho(),
+                tenis.getCor());
 
     }
 }

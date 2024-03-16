@@ -5,16 +5,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
 @Getter
-
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Cor {
 
-    AZUL(1, "Azul"),
-    BRANCO(2, "Branco"),
-    PRETO(3, "Preto"),
-    VERDE(4, "Verde"),
-    AMARELO(5, "Amarelo"),
-    VERMELHO(6, "Vermelho");
+    AZUL(1, "Branco"),
+    BRANCO(2, "Vermelho"),
+    PRETO(3, "Verde"),
+    VERDE(4, "Azul");
 
     private Integer id;
     private String label;

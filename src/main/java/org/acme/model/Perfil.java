@@ -10,8 +10,7 @@ import lombok.Getter;
 public enum Perfil {
 
     ADM(1, "Admin"),
-    USER(2, "Usuario"),
-    VENDEDOR(3, "Vendedor");
+    USER(2, "Usuario");
 
     private final Integer id;
     private final String label;

@@ -1,6 +1,7 @@
 @startuml
 
-class Produto { 
+class Tenis {
+
     - id: long
     - nome: string
     - preco: double
@@ -11,14 +12,15 @@ class Produto {
     - cor: Cor
 }
 
-class ItemCarrinho{
+class ItemPedido{
     - id: long
-    - quantidade: int
-    - produto: Produto
+    - quantidade: Integer
+    - tenis: Tenis
 }
 
-class CarrinhoDeCompras {
-    - itens: ItemCarrinho[]
+class Pedido {
+    - pessoa: Pessoa
+    - itens: ItemPedido[]
 }
 
 enum Cor{
@@ -41,11 +43,11 @@ enum Tamanho {
 
 class Pagamento {
     - id: long
-    - valor: double
+    - valorTotal: double
     - metodo: MetodoDePagamento
     - status: StatusPagamento
     - dataPagamento: localDate
-    - carrinho: CarrinhoDeCompras
+    - pedido: Pedido
 }
 
 enum MetodoDePagamento {
@@ -61,21 +63,37 @@ enum StatusPagamento {
     CANCELADO
 }
 
+class Cartao {
+    - idPedido: long
+    - nome: String
+    - numero: String
+    - dataValidade: localDate
+    -cvc: Integer
+    -idBandeira: long
+}
+
+enum BandeiraCartao{
+    VISA,
+    MASTERCARD,
+    ELO
+}
+
 class Perfil {
     ADM,
-    USER,
-    VENDEDOR
+    USER
 }
 
 class Pessoa {
     - id: long
     - nome: string
+    - senha: string
     - cpf: string
     - telefone: string
     - e-mail: string
     - dataNascimento: Data
     - perfil: Perfil
     - endereco: Endereco
+    - nomeImagem: string
 }
 
 class Endereco {
@@ -101,17 +119,17 @@ class Estado {
 }
 
 
-Produto "1" --> "1..*" ItemCarrinho
+Tenis "1" --> "1..*" ItemPedido
 
-Produto "1" --> "1" Cor
+Tenis "1" --> "1" Cor
 
-Produto "1" --> "1" Tamanho
+Tenis "1" --> "1" Tamanho
 
-CarrinhoDeCompras "1" --> "0..*" ItemCarrinho
+Pedido "1" --> "0..*" ItemPedido
 
 Pessoa "1" --> "1" Perfil
 
-Pessoa "1" --> "1" CarrinhoDeCompras
+Pessoa "1" --> "1" Pedido
 
 Pessoa "1" --> "1..*" Endereco
 
@@ -119,11 +137,15 @@ Endereco "1" --> "1" Cidade
 
 Cidade "1" --> "0..*" Estado
 
-Pagamento "1" --> "1..*" CarrinhoDeCompras
+Pagamento "1" --> "1..*" Pedido
 
 Pagamento "1" --> "1" Pessoa
 
 Pagamento "1" --> "1" MetodoDePagamento
+
+MetodoDePagamento "1" --> "0.." Cartao
+
+Cartao "1" --> "0.." BandeiraCartao
 
 Pagamento "1" --> "1" StatusPagamento
 
