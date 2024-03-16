@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-public class Tenis extends DefaultEntity {
+public class Joia extends DefaultEntity {
 
     @NotBlank(message = "Insira o nome do produto")
     private String nome;
@@ -28,7 +28,4 @@ public class Tenis extends DefaultEntity {
     private Tamanho tamanho;
 
     private Cor cor;
-
-
-
 }
