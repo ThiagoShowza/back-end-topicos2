@@ -1,21 +1,44 @@
-@startuml
+@startuml diagrama
 
-class Tenis {
+class Joia {
 
     - id: long
     - nome: string
-    - preco: double
-    - descricao: string
+    - material: double
+    - pedrasPreciosas: PedrasPreciosas
     - estoque: int
     - imgProduto: string
-    - tamanho: Tamanho
+    - tamanho: string
     - cor: Cor
 }
+
+enum Material{
+    - OURO,
+    - PRATA,
+    - BRONZE,
+    - AÇO,
+    - BRONZE
+}
+
+class PedrasPreciosas{
+    - pedra: Pedra
+    - peso: string
+    - cor: Cor
+}
+
+enum Pedra{
+    DIAMANTE,
+    RUBI,
+    ESMERALDA,
+    PEROLA
+
+}
+
 
 class ItemPedido{
     - id: long
     - quantidade: Integer
-    - tenis: Tenis
+    - joia: Joia
 }
 
 class Pedido {
@@ -27,18 +50,10 @@ enum Cor{
     BRANCO,
     VERMELHO,
     VERDE,
-    AZUL
-}
+    AZUL,
+    AMARELO,
+    PRATA
 
-enum Tamanho {
-    - 38,
-    - 39,
-    - 40,
-    - 41,
-    - 42,
-    - 43,
-    - 44,
-    - 45
 }
 
 class Pagamento {
@@ -68,8 +83,8 @@ class Cartao {
     - nome: String
     - numero: String
     - dataValidade: localDate
-    -cvc: Integer
-    -idBandeira: long
+    - cvc: Integer
+    - idBandeira: long
 }
 
 enum BandeiraCartao{
@@ -119,11 +134,17 @@ class Estado {
 }
 
 
-Tenis "1" --> "1..*" ItemPedido
+Joia "1" --> "1..*" ItemPedido
 
-Tenis "1" --> "1" Cor
+Joia "1" --> "1" Cor
 
-Tenis "1" --> "1" Tamanho
+Joia "1" --> "0..*" Material
+
+Joia "0..*" --> "1" PedrasPreciosas
+
+Pedra "1" --> "1" PedrasPreciosas
+
+PedrasPreciosas "1" --> "0..*" Cor
 
 Pedido "1" --> "0..*" ItemPedido
 
