@@ -1,16 +1,46 @@
 @startuml diagrama
 
 class Joia {
-
     - id: long
     - nome: string
     - material: double
     - pedrasPreciosas: PedrasPreciosas
     - estoque: int
     - imgProduto: string
-    - tamanho: string
     - cor: Cor
 }
+
+class Pulseira {
+      - id: long
+      - comprimento: double
+      - tipoFecho: TipoFecho
+      - tipoElo: TipoElo
+      - joia: Joia
+      - pingente: Pingente
+}
+
+class Corrente {
+      - id: long
+      - comprimento: double
+      - tipoFecho: TipoFecho
+      - tipoElo: TipoElo
+      - joia: Joia
+      - pingente: Pingente
+}
+
+class Anel {
+      - id: long
+      - tamanho: double
+      - joia: Joia
+}
+
+class Pingente {
+      - id: long
+      - pedrasPreciosas: PedrasPreciosas
+      - material: Material
+      - cor: Cor
+}
+
 
 enum Material{
     - OURO,
@@ -133,6 +163,21 @@ class Estado {
     - sigla: string
 }
 
+Pingente "1" --> "0..*" Cor
+
+Pingente "1" --> "0..*" Material
+
+Pingente "*" --> "*" PedrasPreciosas
+
+Pulseira "1" --> "0..*" Pingente
+
+Corrente "1" --> "0..*" Pingente
+
+Corrente "1" --> "0..*" Joia
+
+Anel "1" --> "0..*" Joia
+
+Pulseira "1" --> "0..*" Joia
 
 Joia "1" --> "1..*" ItemPedido
 
