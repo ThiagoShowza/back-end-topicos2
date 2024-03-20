@@ -15,10 +15,10 @@ import lombok.Setter;
 public class ItemPedido extends DefaultEntity {
 
     @NotBlank(message = "Informe a quantidade de itens")
-    @Positive(message = "O CEP não pode ser 0 ou negativo")
+    @Positive(message = "A quantidade inválida")
     private Integer quantidade;
 
     @ManyToOne
-    @JoinColumn(name = "id_ tenis")
-    private Tenis tenis;
+    @JoinColumn(name = "id_joia")
+    private Joia joia;
 }

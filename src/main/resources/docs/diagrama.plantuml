@@ -5,6 +5,7 @@ class Joia {
     - nome: string
     - material: double
     - pedrasPreciosas: PedrasPreciosas
+    - preco: double
     - estoque: int
     - imgProduto: string
     - cor: Cor
@@ -46,13 +47,13 @@ enum Material{
     - OURO,
     - PRATA,
     - BRONZE,
-    - AÇO,
-    - BRONZE
+    - AÇO
 }
 
 class PedrasPreciosas{
     - pedra: Pedra
     - peso: string
+    - quantidade: Integer
     - cor: Cor
 }
 
