@@ -12,7 +12,7 @@ public class Pulseira extends Joia {
 
     @NotBlank(message = "Informe o comprimento da Pulseira")
     private Double comprimento;
-    private Double imgPulseira;
+    private String imgPulseira;
     @NotBlank(message = "Informe o tipo de Fecho")
     private TipoFecho tipoFecho;
     @NotBlank(message = "Informe o tipo de Elo")

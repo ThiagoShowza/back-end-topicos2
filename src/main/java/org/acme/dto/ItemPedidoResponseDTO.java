@@ -5,12 +5,12 @@ import org.acme.model.ItemPedido;
 
 public record ItemPedidoResponseDTO(
         Integer quantidade,
-        Long idTenis) {
+        Long idJoia) {
 
     public static ItemPedidoResponseDTO valueOf(ItemPedido item){
             return new ItemPedidoResponseDTO(
                 item.getQuantidade(),
-                item.getTenis().getId());
+                item.getJoia().getId());
         }
 
     public static List<ItemPedidoResponseDTO> valueOf(List<ItemPedido> item){

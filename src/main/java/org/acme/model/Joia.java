@@ -29,7 +29,7 @@ public class Joia extends DefaultEntity {
     private Double preco;
 
     @NotBlank(message = "Informe a quantidade de estoque")
-    private int estoque;
+    private Integer estoque;
 
     private Cor cor;
 

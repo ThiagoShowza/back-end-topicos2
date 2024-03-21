@@ -16,7 +16,6 @@ public class PedraPreciosa extends DefaultEntity{
     private String peso;
     @NotBlank(message = "Informe a quantidade de pedras")
     private Integer quantidade;
-    @NotBlank(message = "Informe a cor da pedra")
     private Cor cor;
     
 }
