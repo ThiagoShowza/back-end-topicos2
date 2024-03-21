@@ -4,42 +4,46 @@ class Joia {
     - id: long
     - nome: string
     - material: double
+    - descricao: string
     - pedrasPreciosas: PedrasPreciosas
     - preco: double
     - estoque: int
-    - imgProduto: string
     - cor: Cor
+    - peso: double
 }
 
 class Pulseira {
-      - id: long
-      - comprimento: double
-      - tipoFecho: TipoFecho
-      - tipoElo: TipoElo
-      - joia: Joia
-      - pingente: Pingente
+    - id: long
+    - comprimento: double
+    - tipoFecho: TipoFecho
+    - tipoElo: TipoElo
+    - joia: Joia
+    - imgProduto: string
+    - pingente: Pingente
 }
 
 class Corrente {
-      - id: long
-      - comprimento: double
-      - tipoFecho: TipoFecho
-      - tipoElo: TipoElo
-      - joia: Joia
-      - pingente: Pingente
+    - id: long
+    - comprimento: double
+    - tipoFecho: TipoFecho
+    - tipoElo: TipoElo
+    - joia: Joia
+    - imgProduto: string
+    - pingente: Pingente
 }
 
 class Anel {
-      - id: long
-      - tamanho: double
-      - joia: Joia
+    - id: long
+    - tamanho: double
+    - imgProduto: string
+    - joia: Joia
 }
 
 class Pingente {
-      - id: long
-      - pedrasPreciosas: PedrasPreciosas
-      - material: Material
-      - cor: Cor
+    - id: long
+    - pedrasPreciosas: PedrasPreciosas
+    - material: Material
+    - cor: Cor
 }
 
 
@@ -50,7 +54,7 @@ enum Material{
     - AÇO
 }
 
-class PedrasPreciosas{
+class PedraPreciosa{
     - pedra: Pedra
     - peso: string
     - quantidade: Integer
@@ -164,6 +168,13 @@ class Estado {
     - sigla: string
 }
 
+
+Joia <|-- Pulseira
+
+Joia <|-- Anel
+
+Joia <|-- Corrente
+
 Pingente "1" --> "0..*" Cor
 
 Pingente "1" --> "0..*" Material
@@ -173,12 +184,6 @@ Pingente "*" --> "*" PedrasPreciosas
 Pulseira "1" --> "0..*" Pingente
 
 Corrente "1" --> "0..*" Pingente
-
-Corrente "1" --> "0..*" Joia
-
-Anel "1" --> "0..*" Joia
-
-Pulseira "1" --> "0..*" Joia
 
 Joia "1" --> "1..*" ItemPedido
 
