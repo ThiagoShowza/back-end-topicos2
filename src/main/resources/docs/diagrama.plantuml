@@ -179,7 +179,7 @@ Pingente "1" --> "0..*" Cor
 
 Pingente "1" --> "0..*" Material
 
-Pingente "*" --> "*" PedrasPreciosas
+Pingente "*" --> "*" PedraPreciosa
 
 Pulseira "1" --> "0..*" Pingente
 
@@ -191,11 +191,11 @@ Joia "1" --> "1" Cor
 
 Joia "1" --> "0..*" Material
 
-Joia "0..*" --> "1" PedrasPreciosas
+Joia "0..*" --> "1" PedraPreciosa
 
-Pedra "1" --> "1" PedrasPreciosas
+Pedra "1" --> "1" PedraPreciosa
 
-PedrasPreciosas "1" --> "0..*" Cor
+PedraPreciosa "1" --> "0..*" Cor
 
 Pedido "1" --> "0..*" ItemPedido
 
