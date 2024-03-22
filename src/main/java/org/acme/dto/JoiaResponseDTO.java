@@ -23,9 +23,9 @@ public record JoiaResponseDTO(
             joia.getDescricao(),
             joia.getListaPedras()
                 .stream()
-                .map(p -> PedraPreciosaDTO.valueOf(p)).toList(),
+                .map(p -> PedraPreciosaResponseDTO.valueOf(p)).toList(),
             joia.getPreco(),
-            joia.getPreco(),
+            joia.getEstoque(),
             joia.getCor(),
             joia.getPeso());
 

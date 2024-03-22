@@ -13,13 +13,4 @@ public record PedraPreciosaDTO(
         @NotBlank(message = "Informe a quantidade de pedras")
         Integer quantidade,
         Integer idCor) {
-
-            public static PedraPreciosaDTO valueOf(PedraPreciosa pedraPreciosa){
-                return new PedraPreciosaDTO(
-                    pedraPreciosa.getPedra().getId(), 
-                    pedraPreciosa.getPeso(), 
-                    pedraPreciosa.getQuantidade(), 
-                    pedraPreciosa.getCor().getId());
-            }
-
 }
