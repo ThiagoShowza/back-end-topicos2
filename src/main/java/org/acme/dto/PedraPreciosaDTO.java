@@ -1,7 +1,5 @@
 package org.acme.dto;
 
-import org.acme.model.PedraPreciosa;
-
 import jakarta.validation.constraints.NotBlank;
 
 public record PedraPreciosaDTO(

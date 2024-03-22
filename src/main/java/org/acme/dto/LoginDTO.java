@@ -3,10 +3,10 @@ package org.acme.dto;
 import jakarta.validation.constraints.NotEmpty;
 
 public record LoginDTO(
-    @NotEmpty(message = "O campo não pode ser nulo")
+    @NotEmpty(message = "Informe o e-mail")
     String email,
 
-    @NotEmpty(message = "O campo senha não pode ser nulo")
+    @NotEmpty(message = "Informe a senha")
     String senha
 ) {
     

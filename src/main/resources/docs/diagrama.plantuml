@@ -18,7 +18,7 @@ class Pulseira {
     - tipoFecho: TipoFecho
     - tipoElo: TipoElo
     - joia: Joia
-    - imgProduto: string
+    - imgPulseira: string
     - pingente: Pingente
 }
 
@@ -28,20 +28,21 @@ class Corrente {
     - tipoFecho: TipoFecho
     - tipoElo: TipoElo
     - joia: Joia
-    - imgProduto: string
+    - imgCorrente: string
     - pingente: Pingente
 }
 
 class Anel {
     - id: long
     - tamanho: double
-    - imgProduto: string
+    - imgAnel: string
+    - pedraPreciosa: PedraPreciosa
     - joia: Joia
 }
 
 class Pingente {
     - id: long
-    - pedrasPreciosas: PedrasPreciosas
+    - pedraPreciosa: PedraPreciosa
     - material: Material
     - cor: Cor
 }
