@@ -2,8 +2,7 @@ package org.acme.model;
 
 import java.util.List;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class Joia extends DefaultEntity {
 
     @NotBlank(message = "Informe o nome do produto")
@@ -21,8 +21,7 @@ public class Joia extends DefaultEntity {
 
     private String descricao;
 
-    @OneToMany(mappedBy = "Joia")
-    @JoinTable(name = "joia_Pedra", joinColumns = @JoinColumn(name = "id_joia"), inverseJoinColumns = @JoinColumn(name = "id_pedra"))
+    @OneToMany(mappedBy = "joia")
     private List<PedraPreciosa> listaPedras;
 
     @NotBlank(message = "Informe o preco")

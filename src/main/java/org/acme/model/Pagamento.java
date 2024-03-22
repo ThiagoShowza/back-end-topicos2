@@ -23,13 +23,9 @@ public class Pagamento extends DefaultEntity{
     private Double valorTotal;
 
     @NotBlank(message = "O método de pagamento não pode ser nulo")
-    @ManyToOne
-    @JoinColumn(name = "id_metodo_pagamento")
     private MetodoDePagamento metodo;
 
     @NotBlank(message = "O status do pagamento não pode ser nulo")
-    @ManyToOne
-    @JoinColumn(name = "id_status_pagamento")
     private StatusPagamento status;
 
     @NotBlank(message = "A data de pagamento não pode ser nula")

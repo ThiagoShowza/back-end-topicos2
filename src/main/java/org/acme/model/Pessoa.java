@@ -3,12 +3,9 @@ package org.acme.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.hibernate.validator.constraints.br.CPF;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -48,8 +45,8 @@ public class Pessoa extends DefaultEntity {
     @JoinColumn(name = "id_endereco")
     private List<Endereco> ListaEndereco;
 
-    @OneToOne
-    @JoinColumn(name = "id_perfil")
+    @Column(name = "id_perfil")
+    @Enumerated(EnumType.STRING)
     private Perfil perfil;
 
     private String nomeImagem;

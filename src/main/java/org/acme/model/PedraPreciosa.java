@@ -1,6 +1,8 @@
 package org.acme.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +19,7 @@ public class PedraPreciosa extends DefaultEntity{
     @NotBlank(message = "Informe a quantidade de pedras")
     private Integer quantidade;
     private Cor cor;
-    
+    @ManyToOne
+    @JoinColumn(name = "joia_id")
+    private Joia joia;
 }
