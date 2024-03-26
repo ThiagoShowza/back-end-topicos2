@@ -4,46 +4,73 @@ import java.util.List;
 
 import org.acme.dto.CidadeDTO;
 import org.acme.dto.CidadeResponseDTO;
+import org.acme.model.Cidade;
+import org.acme.model.Estado;
+import org.acme.repository.CidadeRepository;
+import org.acme.repository.EstadoRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class CidadeServiceImpl implements CidadeService {
 
+    @Inject
+    CidadeRepository repository;
+
+    @Inject
+    EstadoRepository estadoRepository;
+
     @Override
+    @Transactional
     public CidadeResponseDTO insert(CidadeDTO dto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+        Cidade novaCidade = new Cidade();
+        novaCidade.setNome(dto.nome());
+        Estado estado = estadoRepository.findById(dto.idEstado());
+        novaCidade.setEstado(estado);
+
+        repository.persist(novaCidade);
+        return CidadeResponseDTO.valueOf(novaCidade);
     }
 
     @Override
+    @Transactional
     public CidadeResponseDTO update(CidadeDTO dto, Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Cidade updateCidade = repository.findById(id);
+        if (updateCidade != null) {
+            updateCidade.setNome(dto.nome());
+            Estado estado = estadoRepository.findById(dto.idEstado());
+            updateCidade.setEstado(estado);
+        } else {
+            throw new NotFoundException();
+        }
+        return CidadeResponseDTO.valueOf(updateCidade);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if (!repository.deleteById(id))
+            throw new NotFoundException();
     }
 
     @Override
     public CidadeResponseDTO findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return CidadeResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
     public List<CidadeResponseDTO> findByNome(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByNome'");
+        return repository.findByNome(nome).stream()
+                .map(e -> CidadeResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<CidadeResponseDTO> findByAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByAll'");
+        return repository.listAll().stream()
+                .map(e -> CidadeResponseDTO.valueOf(e)).toList();
     }
-    
+
 }
