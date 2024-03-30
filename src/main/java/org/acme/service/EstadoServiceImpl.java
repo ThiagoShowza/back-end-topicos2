@@ -21,7 +21,7 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     @Transactional
     public EstadoResponseDTO insert(EstadoDTO dto) {
-        
+
         Estado novoEstado = new Estado();
         novoEstado.setNome(dto.nome());
         novoEstado.setSigla(dto.sigla());
@@ -34,10 +34,10 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     public EstadoResponseDTO update(EstadoDTO dto, Long id) {
         Estado updateEstado = repository.findById(id);
-        if(updateEstado != null){
+        if (updateEstado != null) {
             updateEstado.setNome(dto.nome());
             updateEstado.setNome(dto.sigla());
-        } else{
+        } else {
             throw new NotFoundException();
         }
         return EstadoResponseDTO.valueOf(updateEstado);
@@ -46,28 +46,26 @@ public class EstadoServiceImpl implements EstadoService {
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if (!repository.deleteById(id))
+            throw new NotFoundException();
     }
 
     @Override
     public EstadoResponseDTO findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return EstadoResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
     public List<EstadoResponseDTO> findByNome(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByNome'");
+        return repository.findByNome(nome).stream()
+                .map(e -> EstadoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<EstadoResponseDTO> findByAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByAll'");
+        return repository.listAll().stream()
+                .map(e -> EstadoResponseDTO.valueOf(e)).toList();
+
     }
 
-
-    
 }
