@@ -17,8 +17,6 @@ public class Pulseira extends Joia {
     private TipoFecho tipoFecho;
     @NotBlank(message = "Informe o tipo de Elo")
     private TipoElo tipoElo;
-    @NotBlank(message = "Informe os dados da Joia")
-    private Joia joia;
     private Pingente pingente;
     
 }

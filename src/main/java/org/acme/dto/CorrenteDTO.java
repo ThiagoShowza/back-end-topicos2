@@ -10,8 +10,6 @@ public record CorrenteDTO(
     Integer idFecho,
     @NotBlank(message = "Informe o tipo de Elo")
     Integer idElo,
-    @NotBlank(message = "Informe os dados da Joia")
-    JoiaResponseDTO joia,
     String imgProduto,
     PingenteResponseDTO pingente
 

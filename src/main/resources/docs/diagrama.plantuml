@@ -17,7 +17,6 @@ class Pulseira {
     - comprimento: double
     - tipoFecho: TipoFecho
     - tipoElo: TipoElo
-    - joia: Joia
     - imgPulseira: string
     - pingente: Pingente
 }
@@ -27,7 +26,6 @@ class Corrente {
     - comprimento: double
     - tipoFecho: TipoFecho
     - tipoElo: TipoElo
-    - joia: Joia
     - imgCorrente: string
     - pingente: Pingente
 }
@@ -37,7 +35,6 @@ class Anel {
     - tamanho: double
     - imgAnel: string
     - pedraPreciosa: PedraPreciosa
-    - joia: Joia
 }
 
 class Pingente {
@@ -45,6 +42,13 @@ class Pingente {
     - pedraPreciosa: PedraPreciosa
     - material: Material
     - cor: Cor
+}
+
+class Colecao {
+    - nome: String
+    - descricao: String
+    - joia: List<Joia>
+    - pessoa: pessoa
 }
 
 
@@ -143,7 +147,7 @@ class Pessoa {
     - e-mail: string
     - dataNascimento: Data
     - perfil: Perfil
-    - endereco: Endereco
+    - endereco: List<Endereco>
     - nomeImagem: string
 }
 
@@ -175,6 +179,10 @@ Joia <|-- Pulseira
 Joia <|-- Anel
 
 Joia <|-- Corrente
+
+Joia "1" --> "0..*" Colecao
+
+Colecao "1" --> "0..*" Pessoa
 
 Pingente "1" --> "0..*" Cor
 

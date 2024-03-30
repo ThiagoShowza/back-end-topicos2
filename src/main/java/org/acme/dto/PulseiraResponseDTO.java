@@ -11,7 +11,6 @@ public record PulseiraResponseDTO(
         String imgPulseira,
         TipoFecho tipoFecho,
         TipoElo tipoElo,
-        JoiaResponseDTO joia,
         PingenteResponseDTO pingente
 
 ) {
@@ -24,7 +23,6 @@ public record PulseiraResponseDTO(
                 pulseira.getImgPulseira(),
                 pulseira.getTipoFecho(),
                 pulseira.getTipoElo(),
-                JoiaResponseDTO.valueOf(pulseira.getJoia()),
                 PingenteResponseDTO.valueOf(pulseira.getPingente()));
     }
 

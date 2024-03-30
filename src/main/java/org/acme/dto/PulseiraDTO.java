@@ -10,7 +10,6 @@ public record PulseiraDTO(
         @NotNull(message = "Insira a quantidade de estoque")
         Integer idFecho,
         Integer idElo,
-        JoiaResponseDTO joia,
         PingenteResponseDTO pingente
         ) {
                 
