@@ -3,8 +3,10 @@ package org.acme.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -18,10 +20,11 @@ import lombok.Setter;
 public class Endereco extends DefaultEntity {
 
     @ManyToOne
+    @JoinColumn(name = "id_cidade")
     private Cidade cidade;
 
     @NotBlank
-    @Size(min = 8, max = 8, message = "CEP deve ter 8 caracteres")
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve estar no formato 'XXXXX-XXX'.")
     @Column(nullable = false)
     private String cep;
 

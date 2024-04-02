@@ -15,7 +15,7 @@ public interface EnderecoService {
 
     public EnderecoResponseDTO findById(Long id);
     
-    public List<EnderecoResponseDTO> findByNome(String nome);
+    public List<EnderecoResponseDTO> findByBairro(String nome);
 
     public List<EnderecoResponseDTO> findByAll();
 }

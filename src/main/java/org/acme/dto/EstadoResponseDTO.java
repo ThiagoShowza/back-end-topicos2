@@ -2,18 +2,19 @@ package org.acme.dto;
 
 import org.acme.model.Estado;
 
+import jakarta.validation.constraints.Positive;
+
 public record EstadoResponseDTO(
-        
-    Long id,
-    String nome,
-    String sigla
+        @Positive(message = "Id invalido") Long id,
+        String nome,
+        String sigla
 
 ) {
-    public static EstadoResponseDTO valueOf(Estado estado){
+    public static EstadoResponseDTO valueOf(Estado estado) {
         return new EstadoResponseDTO(
-            estado.getId(),
-            estado.getNome(),
-            estado.getSigla());
+                estado.getId(),
+                estado.getNome(),
+                estado.getSigla());
     }
 
 }

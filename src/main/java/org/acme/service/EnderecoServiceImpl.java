@@ -7,18 +7,17 @@ import org.acme.dto.EnderecoResponseDTO;
 import org.acme.model.Cidade;
 import org.acme.model.Endereco;
 import org.acme.repository.CidadeRepository;
-import org.acme.repository.EnderecoRespository;
-import org.acme.repository.EstadoRepository;
-
+import org.acme.repository.EnderecoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class EnderecoServiceImpl implements EnderecoService {
 
     @Inject 
-    EnderecoRespository repository;
+    EnderecoRepository repository;
 
     @Inject
     CidadeRepository cidadeRepository;
@@ -42,34 +41,49 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
+    @Transactional
     public EnderecoResponseDTO update(EnderecoDTO dto, Long id) {
-        Endereco EnderecoUpdate = repository.findById(id);
+        Endereco enderecoUpdate = repository.findById(id);
 
+            if(enderecoUpdate != null){
+                Cidade cidade = cidadeRepository.findById(dto.idCidade());
+                enderecoUpdate.setCidade(cidade);
+                enderecoUpdate.setCep(dto.cep());
+                enderecoUpdate.setNumero(dto.numero());
+                enderecoUpdate.setBairro(dto.bairro());
+                enderecoUpdate.setLogradouro(dto.logradouro());
+                enderecoUpdate.setComplemento(dto.complemento());
+            }
+            else
+            throw new NotFoundException();
 
+            return EnderecoResponseDTO.valueOf(enderecoUpdate);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if(!repository.deleteById(id))
+        throw new NotFoundException();
+
     }
 
     @Override
     public EnderecoResponseDTO findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return EnderecoResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
-    public List<EnderecoResponseDTO> findByNome(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByNome'");
+    public List<EnderecoResponseDTO> findByBairro(String bairro) {
+        return repository.findByBairro(bairro).stream()
+                .map(e -> EnderecoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<EnderecoResponseDTO> findByAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByAll'");
+        return repository.listAll().stream()
+                .map(e -> EnderecoResponseDTO.valueOf(e)).toList();
+
     }
     
 }
