@@ -10,6 +10,7 @@ import org.acme.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -20,7 +21,7 @@ public class EstadoServiceImpl implements EstadoService {
 
     @Override
     @Transactional
-    public EstadoResponseDTO insert(EstadoDTO dto) {
+    public EstadoResponseDTO insert(@Valid EstadoDTO dto) {
 
         Estado novoEstado = new Estado();
         novoEstado.setNome(dto.nome());

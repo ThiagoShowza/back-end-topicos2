@@ -6,7 +6,6 @@ import org.acme.service.EstadoService;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -28,7 +27,7 @@ public class EstadoResource {
     EstadoService service;
 
     @POST
-    public Response insert(@Valid EstadoDTO dto) {
+    public Response insert(EstadoDTO dto) {
         EstadoResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }

@@ -5,9 +5,11 @@ import java.util.List;
 import org.acme.dto.EstadoDTO;
 import org.acme.dto.EstadoResponseDTO;
 
+import jakarta.validation.Valid;
+
 public interface EstadoService {
 
-    public EstadoResponseDTO insert(EstadoDTO dto);
+    public EstadoResponseDTO insert(@Valid EstadoDTO dto);
 
     public EstadoResponseDTO update(EstadoDTO dto, Long id);
 

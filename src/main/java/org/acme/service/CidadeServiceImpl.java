@@ -12,6 +12,7 @@ import org.acme.repository.EstadoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -25,7 +26,7 @@ public class CidadeServiceImpl implements CidadeService {
 
     @Override
     @Transactional
-    public CidadeResponseDTO insert(CidadeDTO dto) {
+    public CidadeResponseDTO insert(@Valid CidadeDTO dto) {
         Cidade novaCidade = new Cidade();
         novaCidade.setNome(dto.nome());
         Estado estado = estadoRepository.findById(dto.idEstado());

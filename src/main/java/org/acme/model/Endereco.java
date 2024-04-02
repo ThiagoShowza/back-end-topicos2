@@ -23,7 +23,7 @@ public class Endereco extends DefaultEntity {
     @NotBlank
     @Size(min = 8, max = 8, message = "CEP deve ter 8 caracteres")
     @Column(nullable = false)
-    private Integer cep;
+    private String cep;
 
 
     @Column(length = 8, nullable = false)

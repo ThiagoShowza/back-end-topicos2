@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public record EnderecoDTO(
-        CidadeDTO cidade,
+        Long idCidade,
         @NotBlank @Size(min = 8, max = 8, message = "CEP deve ter 8 caracteres")
         String cep,
         @Positive(message = "O número deve ser positivo")

@@ -30,6 +30,13 @@
   <dependencies>
 
 
+
+    <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-hibernate-validator -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
+    </dependency>
+
     <!--DEPENDECIA PARA USAR @CPF-->
     <dependency>
         <groupId>org.hibernate.validator</groupId>
