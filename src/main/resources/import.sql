@@ -77,13 +77,21 @@ VALUES (1, '10 quilates', 5, 1);
 INSERT INTO PedraPreciosa (pedra, peso, quantidade, cor)
 VALUES (2, '8 quilates', 3, 1);
 
--- Inserir uma nova joia (anel)
+-- Inserir uma nova joia
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
 VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
 
--- Inserir uma nova pulseira sem pingente
+-- Inserir uma nova joia
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Anel de Ouro', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+
+-- Inserir uma nova pulseira
 INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
 VALUES (1, 20.0, 'img/pulseira1.jpg', 1, 1);
+
+-- Inserir uma nova corrente
+INSERT INTO Corrente (joia_id, comprimento, imgCorrente, tipoFecho, tipoElo)
+VALUES (2, 20.0, 'img/corrente1.jpg', 1, 1);
 
 -- INSERT PINGENTE
 INSERT INTO Pingente (material, cor, pulseira_id)
@@ -91,6 +99,9 @@ VALUES (1, 1, 1);
 
 INSERT INTO Pingente (material, cor)
 VALUES (2, 2);
+
+INSERT INTO Pingente (material, cor, corrente_id)
+VALUES (1, 1, 2);
 
 -- Inserir algumas pessoas
 INSERT INTO Pessoa (nome, senha, cpf, telefone, email, DataNascimento, perfil)
