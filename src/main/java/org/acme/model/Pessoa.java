@@ -45,9 +45,11 @@ public class Pessoa extends DefaultEntity {
     @JoinColumn(name = "id_endereco")
     private List<Endereco> ListaEndereco;
 
-    @Column(name = "id_perfil")
-    @Enumerated(EnumType.STRING)
+    @NotBlank
     private Perfil perfil;
 
     private String nomeImagem;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Colecao> colecoes;
 }

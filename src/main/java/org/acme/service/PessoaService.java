@@ -1,9 +1,9 @@
 package org.acme.service;
 
-import java.util.List;
-
 import org.acme.dto.PessoaDTO;
 import org.acme.dto.PessoaResponseDTO;
+
+import java.util.List;
 
 public interface PessoaService {
 
