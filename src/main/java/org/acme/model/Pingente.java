@@ -24,4 +24,9 @@ public class Pingente extends DefaultEntity{
     @OneToOne
     @JoinColumn(name = "pulseira_id")
     private Pulseira pulseira;
+
+    @OneToOne
+    @JoinColumn(name = "corrente_id")
+    private Corrente corrente;
+
 }
