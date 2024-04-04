@@ -1,5 +1,13 @@
 # API Documentation for topicos2-jordanshoes
 
+# Students:
+
+- Thiago Souza:
+**[github](https://github.com/ThiagoShowza)**
+
+- João Victor Póvoa França:
+  **[github](https://github.com/JoaoIto)**
+
 ## Introduction
 This API serves as a backend for a jewelry store, allowing management of jewelry items such as rings, bracelets, necklaces, etc. It provides endpoints to create, retrieve, update, and delete jewelry items.
 
