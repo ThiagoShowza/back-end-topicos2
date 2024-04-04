@@ -77,9 +77,17 @@ VALUES (1, '10 quilates', 5, 1);
 INSERT INTO PedraPreciosa (pedra, peso, quantidade, cor)
 VALUES (2, '8 quilates', 3, 1);
 
+-- Inserir uma nova joia (anel)
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+
+-- Inserir uma nova pulseira sem pingente
+INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
+VALUES (1, 20.0, 'img/pulseira1.jpg', 1, 1);
+
 -- INSERT PINGENTE
-INSERT INTO Pingente (material, cor)
-VALUES (1, 1);
+INSERT INTO Pingente (material, cor, pulseira_id)
+VALUES (1, 1, 1);
 
 INSERT INTO Pingente (material, cor)
 VALUES (2, 2);
@@ -99,5 +107,19 @@ INSERT INTO Colecao (nome, descricao, pessoa_id)
 VALUES ('Coleção de Maria', 'Uma coleção de Maria', 2);
 
 
-INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
-VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+-- INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+-- VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+--
+-- -- Inserir uma nova pulseira sem pingente
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo)
+-- VALUES ('Pulseira de Ouro', 1, 'Pulseira de ouro', 500.00, 20, 1, 10.5, 20.0, 'img/pulseira1.jpg', 1, 1);
+--
+-- -- Inserir uma nova pulseira com pingente associado
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo, pulseira_id)
+-- VALUES ('Pulseira de Prata com Pingente', 1, 'Pulseira de prata com pingente de diamante', 350.00, 15, 2, 8.0, 18.5, 'img/pulseira2.jpg', 2, 2, 1);
+
+
+
+-- -- Inserir uma nova pulseira com pingente associado (substitua pulseira_id pelo nome da coluna que representa a chave estrangeira para pingente na tabela Pulseira)
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo, pulseira_id)
+-- VALUES ('Pulseira de Prata com Pingente', 1, 'Pulseira de prata com pingente de diamante', 350.00, 15, 2, 8.0, 18.5, 'img/pulseira2.jpg', 2, 2, 1);
