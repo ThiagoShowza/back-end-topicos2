@@ -2,14 +2,16 @@ package org.acme.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 public record PingenteDTO(
         @NotBlank(message = "Pedra precisa ser preenchida!")
-        Long idPedraPreciosa,
+        List<Long> idPedrasPreciosas,
 
         @NotBlank(message = "Material não pode ser nulo!")
-        Long idMaterial,
+        Integer idMaterial,
 
         @NotBlank(message = "Cor não pode ser nula!")
-        Long idCor
+        Integer idCor
 ) {
 }
