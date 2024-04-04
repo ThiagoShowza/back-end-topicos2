@@ -6,7 +6,7 @@ import java.util.List;
 
 public record PingenteResponseDTO(
         Long id,
-        List<PedraPreciosaDTO> pedrasPreciosa,
+        List<PedraPreciosaResponseDTO> pedrasPreciosa,
 
         Material material,
 
@@ -16,7 +16,7 @@ public record PingenteResponseDTO(
 
         return new PingenteResponseDTO(
                 pingente.getId(),
-                pingente.getListaPedras()
+                pingente.getPedraPreciosa()
                         .stream()
                         .map(p -> PedraPreciosaResponseDTO.valueOf(p)).toList(),
                 pingente.getMaterial(),
