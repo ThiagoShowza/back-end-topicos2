@@ -1,10 +1,10 @@
 package org.acme.repository;
 
-import java.util.List;
-
-import org.acme.model.Estado;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import org.acme.model.Estado;
+
+import java.util.List;
 
 @ApplicationScoped
 public class EstadoRepository implements PanacheRepository<Estado> {

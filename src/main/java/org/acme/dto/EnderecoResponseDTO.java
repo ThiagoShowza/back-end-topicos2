@@ -5,7 +5,7 @@ import org.acme.model.Endereco;
 public record EnderecoResponseDTO(
 
         CidadeResponseDTO cidade,
-        Integer cep,
+        String cep,
         Integer numero,
         String bairro,
         String logradouro,

@@ -1,13 +1,14 @@
 package org.acme.service;
 
-import java.util.List;
-
+import jakarta.validation.Valid;
 import org.acme.dto.EstadoDTO;
 import org.acme.dto.EstadoResponseDTO;
 
+import java.util.List;
+
 public interface EstadoService {
 
-    public EstadoResponseDTO insert(EstadoDTO dto);
+    public EstadoResponseDTO insert(@Valid EstadoDTO dto);
 
     public EstadoResponseDTO update(EstadoDTO dto, Long id);
 

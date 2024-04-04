@@ -1,13 +1,16 @@
 package org.acme.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 
 public record EnderecoDTO(
-        CidadeDTO cidade,
-        @NotBlank @Size(min = 8, max = 8, message = "CEP deve ter 8 caracteres") String cep,
-        @Positive(message = "O número deve ser positivo") int numero,
+        @Positive(message = "Id invalido")
+        Long idCidade,
+        @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve estar no formato 'XXXXX-XXX'.")
+        String cep,
+        @Positive(message = "O número deve ser positivo")
+        Integer numero,
         @NotBlank(message = "Informe o bairro") String bairro,
         @NotBlank(message = "Informe o logradouro") String logradouro,
         String complemento
