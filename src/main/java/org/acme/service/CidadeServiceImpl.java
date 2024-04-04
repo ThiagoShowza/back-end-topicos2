@@ -1,7 +1,10 @@
 package org.acme.service;
 
-import java.util.List;
-
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.NotFoundException;
 import org.acme.dto.CidadeDTO;
 import org.acme.dto.CidadeResponseDTO;
 import org.acme.model.Cidade;
@@ -9,10 +12,7 @@ import org.acme.model.Estado;
 import org.acme.repository.CidadeRepository;
 import org.acme.repository.EstadoRepository;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-import jakarta.ws.rs.NotFoundException;
+import java.util.List;
 
 @ApplicationScoped
 public class CidadeServiceImpl implements CidadeService {
@@ -25,7 +25,7 @@ public class CidadeServiceImpl implements CidadeService {
 
     @Override
     @Transactional
-    public CidadeResponseDTO insert(CidadeDTO dto) {
+    public CidadeResponseDTO insert(@Valid CidadeDTO dto) {
         Cidade novaCidade = new Cidade();
         novaCidade.setNome(dto.nome());
         Estado estado = estadoRepository.findById(dto.idEstado());

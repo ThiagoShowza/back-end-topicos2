@@ -5,9 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +15,6 @@ import lombok.Setter;
 public class Cidade extends DefaultEntity {
 
     @Column(length = 60, nullable = false)
-    @NotBlank(message = "O nome não pode ser nulo")
     private String nome;
 
     @ManyToOne(fetch = FetchType.LAZY)
