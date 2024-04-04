@@ -10,7 +10,7 @@ public record JoiaDTO(
     @NotBlank(message = "Informe o Material")
     Integer idMaterial,
     String descricao,
-    List<PedraPreciosaDTO> listaPedras,
+    List<Long> listaIdsPedras,
     @NotBlank(message = "Informe o preco")
     Double preco,
     @NotBlank(message = "Informe a quantidade de estoque")
