@@ -1,7 +1,5 @@
 package org.acme.resource;
 
-import org.acme.dto.*;
-
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -15,8 +13,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-import org.acme.service.PingenteService;
-import org.acme.service.PulseiraService;
+import org.acme.dto.Pulseira.PulseiraDTO;
+import org.acme.dto.Pulseira.PulseiraResponseDTO;
+import org.acme.service.Pulseira.PulseiraService;
 
 @Path("/pulseiras")
 @Produces(MediaType.APPLICATION_JSON)

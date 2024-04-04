@@ -1,10 +1,7 @@
 package org.acme.resource;
 
-import org.acme.dto.CidadeDTO;
-import org.acme.dto.CidadeResponseDTO;
-import org.acme.dto.ColecaoDTO;
-import org.acme.dto.ColecaoResponseDTO;
-import org.acme.service.CidadeService;
+import org.acme.dto.Colecao.ColecaoDTO;
+import org.acme.dto.Colecao.ColecaoResponseDTO;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -19,7 +16,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-import org.acme.service.ColecaoService;
+import org.acme.service.Colecao.ColecaoService;
 
 @Path("/colecao")
 @Produces(MediaType.APPLICATION_JSON)

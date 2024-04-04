@@ -1,8 +1,8 @@
 package org.acme.resource;
 
-import org.acme.dto.CidadeDTO;
-import org.acme.dto.CidadeResponseDTO;
-import org.acme.service.CidadeService;
+import org.acme.dto.Cidade.CidadeDTO;
+import org.acme.dto.Cidade.CidadeResponseDTO;
+import org.acme.service.Cidade.CidadeService;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

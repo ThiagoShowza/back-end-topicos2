@@ -1,8 +1,5 @@
 package org.acme.resource;
 
-import org.acme.dto.PedraPreciosaDTO;
-import org.acme.dto.PedraPreciosaResponseDTO;
-
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -16,9 +13,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-import org.acme.dto.PingenteDTO;
-import org.acme.dto.PingenteResponseDTO;
-import org.acme.service.PingenteService;
+import org.acme.dto.Pingente.PingenteDTO;
+import org.acme.dto.Pingente.PingenteResponseDTO;
+import org.acme.service.Pingente.PingenteService;
 
 @Path("/pingente")
 @Produces(MediaType.APPLICATION_JSON)
