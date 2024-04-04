@@ -98,3 +98,6 @@ VALUES ('Coleção de João', 'Uma coleção de João', 1);
 INSERT INTO Colecao (nome, descricao, pessoa_id)
 VALUES ('Coleção de Maria', 'Uma coleção de Maria', 2);
 
+
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
