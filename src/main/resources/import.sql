@@ -112,11 +112,11 @@ INSERT INTO Anel (joia_id, tamanho, imgAnel)
 VALUES (3, 20.0, 'img/Anel1.jpg');
 
 -- Inserir algumas pessoas
-INSERT INTO Pessoa (nome, senha, cpf, telefone, email, DataNascimento, perfil)
-VALUES ('João Silva', 'senha123', '123.456.789-10', '123456789', 'joao@example.com', '1990-01-01', '1');
+INSERT INTO Pessoa (nome, cpf, telefone, DataNascimento, perfil)
+VALUES ('João Silva', '123.456.789-10', '123456789', '1990-01-01', '1');
 
-INSERT INTO Pessoa (nome, senha, cpf, telefone, email, DataNascimento, perfil)
-VALUES ('Maria Oliveira', 'senha456', '987.654.321-00', '987654321', 'maria@example.com', '1995-05-15', '2');
+INSERT INTO Pessoa (nome, cpf, telefone, DataNascimento, perfil)
+VALUES ('Maria Oliveira', '987.654.321-00', '987654321', '1995-05-15', '2');
 
 -- Inserir algumas coleções, associando-as a pessoas existentes
 INSERT INTO Colecao (nome, descricao, pessoa_id)
@@ -125,6 +125,8 @@ VALUES ('Coleção de João', 'Uma coleção de João', 1);
 INSERT INTO Colecao (nome, descricao, pessoa_id)
 VALUES ('Coleção de Maria', 'Uma coleção de Maria', 2);
 
+INSERT INTO Usuario (email, senha, pessoa_id)
+VALUES ('joao@gmail.com', 'w9pDMz7dZ7REE5f8MukQDK59A9wX6hwL4TlUhqGQDTd2BcHc7VFQdmybnvJjhSljaLbL85+e8osqfvj9OQa2Hw==', 1);
 
 -- INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
 -- VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);

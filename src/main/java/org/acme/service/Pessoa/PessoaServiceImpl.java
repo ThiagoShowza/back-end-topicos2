@@ -22,7 +22,6 @@ public class PessoaServiceImpl implements PessoaService {
     public PessoaResponseDTO insert(PessoaDTO dto) {
         Pessoa novaPessoa = new Pessoa();
         novaPessoa.setNome(dto.nome());
-        novaPessoa.setEmail(dto.email());
         novaPessoa.setCpf(dto.cpf());
         novaPessoa.setPerfil(Perfil.valueOf(dto.idperfil()));
         novaPessoa.setDataNascimento(dto.dataNascimento());

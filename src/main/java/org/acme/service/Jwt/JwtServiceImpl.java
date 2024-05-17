@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.acme.dto.Login.LoginResponseDTO;
 import org.acme.dto.Pessoa.PessoaResponseDTO;
 
 import io.smallrye.jwt.build.Jwt;
@@ -16,12 +17,11 @@ public class JwtServiceImpl implements JwtService {
     private static final Duration EXPIRATION_TIME = Duration.ofHours(24);
 
     @Override
-    public String generateJwt(PessoaResponseDTO dto) {
+    public String generateJwt(LoginResponseDTO dto) {
         Instant now = Instant.now();
         Instant expiryDate = now.plus(EXPIRATION_TIME);
 
         Set<String> roles = new HashSet<String>();
-        roles.add(dto.perfil().getLabel());
 
         return Jwt.issuer("unitins-jwt")
                 .subject(dto.email())

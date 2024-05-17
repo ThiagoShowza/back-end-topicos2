@@ -24,19 +24,11 @@ public class Pessoa extends DefaultEntity {
     private String nome;
 
     @NotBlank
-    @Size(min = 4, max = 25, message = "A senha deve ter entre de 4 a 25 caracteres")
-    private String senha;
-
-    @NotBlank
     @CPF
     private String cpf;
 
     @Pattern(regexp = "^$|^[0-9]{10,15}$", message = "Número de telefone inválido")
     private String telefone;
-
-    @NotBlank
-    @Email
-    private String email;
 
     @Past(message = "Data de nascimento inválida")
     private LocalDate DataNascimento;
@@ -52,4 +44,7 @@ public class Pessoa extends DefaultEntity {
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Colecao> colecoes;
+
+    @OneToOne(mappedBy = "pessoa")
+    private Usuario usuario;
 }
