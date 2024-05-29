@@ -110,6 +110,12 @@ VALUES ('Pingente 1', 1, 1, NULL, 1); -- Referenciando corrente_id=1
 INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
 VALUES ('Pingente 3', 1, 1, NULL, 2); -- Referenciando corrente_id=2
 
+INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
+VALUES ('Pingente 4', 1, 1, 1, NULL); -- Referenciando pulseira_id=1
+
+INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
+VALUES ('Pingente 2', 1, 1, 2, NULL); -- Referenciando pulseira_id=2
+
 -- Inserir um novo anel
 INSERT INTO Anel (joia_id, tamanho, imgAnel)
 VALUES (3, 20.0, 'img/Anel1.jpg');
