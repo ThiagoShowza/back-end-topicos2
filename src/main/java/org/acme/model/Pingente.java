@@ -15,6 +15,11 @@ public class Pingente extends DefaultEntity{
     @OneToMany(mappedBy = "pedra")
     private List<PedraPreciosa> pedraPreciosa;
 
+
+    @NotBlank(message = "Informe o nome")
+    private String nome;
+
+
     @NotBlank(message = "Informe o Material")
     private Material material;
 
@@ -22,11 +27,10 @@ public class Pingente extends DefaultEntity{
     private Cor cor;
 
     @OneToOne
-    @JoinColumn(name = "pulseira_id")
+    @JoinColumn(name = "pulseira_id", nullable = true)
     private Pulseira pulseira;
 
     @OneToOne
-    @JoinColumn(name = "corrente_id")
+    @JoinColumn(name = "corrente_id", nullable = true)
     private Corrente corrente;
-
 }

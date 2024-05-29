@@ -93,19 +93,22 @@ VALUES ('Anel de Ouro', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 
 INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
 VALUES (1, 20.0, 'img/pulseira1.jpg', 1, 1);
 
--- Inserir uma nova corrente
+INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
+VALUES (2, 20.0, 'img/pulseira2.jpg', 1, 1);
+
+-- Inserir novas correntes
 INSERT INTO Corrente (joia_id, comprimento, imgCorrente, tipoFecho, tipoElo)
-VALUES (2, 20.0, 'img/corrente1.jpg', 1, 1);
+VALUES (1, 20.0, 'img/corrente1.jpg', 1, 1); -- Certifique-se de que joia_id=1 existe
 
--- INSERT PINGENTE
-INSERT INTO Pingente (material, cor, pulseira_id)
-VALUES (1, 1, 1);
+INSERT INTO Corrente (joia_id, comprimento, imgCorrente, tipoFecho, tipoElo)
+VALUES (2, 20.0, 'img/corrente2.jpg', 1, 1); -- Certifique-se de que joia_id=2 existe
 
-INSERT INTO Pingente (material, cor)
-VALUES (2, 2);
+-- Inserir novos pingentes com referências corretas
+INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
+VALUES ('Pingente 1', 1, 1, NULL, 1); -- Referenciando corrente_id=1
 
-INSERT INTO Pingente (material, cor, corrente_id)
-VALUES (1, 1, 2);
+INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
+VALUES ('Pingente 3', 1, 1, NULL, 2); -- Referenciando corrente_id=2
 
 -- Inserir um novo anel
 INSERT INTO Anel (joia_id, tamanho, imgAnel)

@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record PingenteDTO(
+
+        @NotBlank(message = "Nome não pode ser nulo!")
+        String nome,
         @NotBlank(message = "Pedra precisa ser preenchida!")
         List<Long> idPedrasPreciosas,
 
