@@ -8,6 +8,7 @@ import org.acme.model.Joia;
 import org.acme.model.Material;
 
 public record JoiaResponseDTO(
+        Long id,
         String nome,
         Material material,
         String descricao,
@@ -19,6 +20,7 @@ public record JoiaResponseDTO(
     public static JoiaResponseDTO valueOf(Joia joia) {
 
         return new JoiaResponseDTO(
+                joia.getId(),
             joia.getNome(),
             joia.getMaterial(),
             joia.getDescricao(),

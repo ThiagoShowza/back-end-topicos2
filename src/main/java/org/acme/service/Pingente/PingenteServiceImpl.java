@@ -27,6 +27,7 @@ public class PingenteServiceImpl implements PingenteService {
     public PingenteResponseDTO insert(PingenteDTO dto) {
         Pingente novoPingente = new Pingente();
 
+        novoPingente.setNome(dto.nome());
         // Setando a cor e material do Pingente
         novoPingente.setCor(Cor.valueOf(dto.idCor()));
         novoPingente.setMaterial(Material.valueOf(dto.idMaterial()));

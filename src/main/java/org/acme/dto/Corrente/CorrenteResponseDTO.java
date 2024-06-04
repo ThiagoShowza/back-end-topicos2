@@ -10,7 +10,7 @@ public record CorrenteResponseDTO(
         Double comprimento,
         TipoFecho tipoFecho,
         TipoElo tipoElo,
-        String imgProduto,
+        String imgCorrente,
         PingenteResponseDTO pingente) {
 
     public static CorrenteResponseDTO valueOf(Corrente corrente){
