@@ -5,16 +5,12 @@ import jakarta.transaction.Transactional;
 import org.acme.dto.ItemPedido.ItemPedidoDTO;
 import org.acme.dto.ItemPedidoResponseDTO;
 import org.acme.dto.Joia.JoiaResponseDTO;
-import org.acme.model.ItemPedido;
-import org.acme.model.Joia;
-import org.acme.model.Pedido;
+import org.acme.model.*;
 import jakarta.inject.Inject;
-import org.acme.model.Pessoa;
-import org.acme.repository.ItemPedidoRepository;
-import org.acme.repository.JoiaRepository;
-import org.acme.repository.PedidoRepository;
-import org.acme.repository.PessoaRepository;
+import org.acme.repository.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,6 +28,9 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
 
     @Inject
     PessoaRepository pessoaRepository;
+
+    @Inject
+    PagamentoRespository pagamentoRepository;
 
     @Override
     @Transactional
@@ -63,11 +62,33 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
         }
         itemPedido.setJoia(produto);
 
+        // Associar o item ao pedido
+        if (pedido.getItens() == null) {
+            pedido.setItens(new ArrayList<>());
+        }
+        pedido.getItens().add(itemPedido);
+
         // Persistir o novo ItemPedido
         itemPedidoRepository.persist(itemPedido);
 
+        // Calcular o valor total do pedido
+        double valorTotal = pedido.getItens().stream()
+                .mapToDouble(item -> item.getJoia().getPreco() * item.getQuantidade())
+                .sum();
+
+        // Criar e persistir um novo Pagamento
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPedido(pedido);
+        pagamento.setValorTotal(valorTotal);
+        pagamento.setMetodo(null);
+        pagamento.setStatus(StatusPagamento.PENDENTE);
+        pagamento.setDataPagamento(LocalDate.now());
+
+        pagamentoRepository.persist(pagamento);
+
         return toResponseDTO(itemPedido);
     }
+
 
 
     @Override
