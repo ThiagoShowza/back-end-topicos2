@@ -7,6 +7,7 @@ import org.acme.model.TipoFecho;
 
 public record CorrenteResponseDTO(
 
+        Long id,
         Double comprimento,
         TipoFecho tipoFecho,
         TipoElo tipoElo,
@@ -15,6 +16,7 @@ public record CorrenteResponseDTO(
 
     public static CorrenteResponseDTO valueOf(Corrente corrente){
         return new CorrenteResponseDTO(
+                corrente.getId(),
             corrente.getComprimento(),
             corrente.getTipofecho(),
             corrente.getTipoElo(),
