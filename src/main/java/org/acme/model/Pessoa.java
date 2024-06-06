@@ -31,14 +31,11 @@ public class Pessoa extends DefaultEntity {
     private String telefone;
 
     @Past(message = "Data de nascimento inválida")
-    private LocalDate DataNascimento;
+    private LocalDate dataNascimento;
 
     @OneToMany
     @JoinColumn(name = "id_endereco")
     private List<Endereco> ListaEndereco;
-
-    @NotBlank
-    private Perfil perfil;
 
     private String nomeImagem;
 

@@ -2,9 +2,11 @@ package org.acme.service.Auth;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.validation.ValidationException;
 import org.acme.dto.Login.LoginDTO;
 import org.acme.dto.Login.LoginResponseDTO;
 import org.acme.model.Usuario;
+import org.acme.repository.AuthRepository;
 import org.acme.repository.UsuarioRepository;
 import org.acme.service.Hash.HashService;
 import org.acme.service.Jwt.JwtService;
@@ -12,6 +14,8 @@ import org.acme.service.Jwt.JwtService;
 @ApplicationScoped
 public class AuthServiceImpl implements AuthService {
 
+    @Inject
+    AuthRepository repository;
     @Inject
     UsuarioRepository usuarioRepository;
 
@@ -30,7 +34,25 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalArgumentException("Email ou senha inválidos");
         }
 
-        String token = jwtService.generateJwt(new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), null));
-        return new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), token);
+        String token = jwtService.generateJwt(new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), usuario.getPerfil().getLabel(), usuario.getSenha()));
+        return new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), usuario.getPerfil().getLabel(), token);
+    }
+
+    @Override
+    public LoginResponseDTO findByLogin(String login) {
+        Usuario usuario = repository.findByLogin(login);
+        if (usuario == null)
+            throw new ValidationException("login inválido!");
+
+        return LoginResponseDTO.valueOf(usuario);
+    }
+
+    @Override
+    public LoginResponseDTO findByEmail(String email) {
+        Usuario usuario = repository.findByEmail(email);
+        if (usuario == null)
+            throw new ValidationException("login inválido!");
+
+        return LoginResponseDTO.valueOf(usuario);
     }
 }

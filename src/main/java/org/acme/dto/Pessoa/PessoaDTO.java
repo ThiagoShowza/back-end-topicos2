@@ -20,6 +20,5 @@ public record PessoaDTO(
         @NotBlank @Email String email,
         @Past(message = "Data de nascimento inválida") LocalDate dataNascimento,
         List<EnderecoDTO> ListaEndereco,
-        Integer idperfil,
         String nomeImagem) {
 }

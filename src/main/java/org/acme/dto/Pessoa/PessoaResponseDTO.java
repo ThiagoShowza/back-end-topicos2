@@ -14,7 +14,6 @@ public record PessoaResponseDTO(
         String telefone,
         LocalDate dataNascimento,
         List<EnderecoResponseDTO> listaEndereco,
-        Perfil perfil,
         String nomeImagem
 
 ) {
@@ -27,7 +26,6 @@ public record PessoaResponseDTO(
                 pessoa.getDataNascimento(),
                 pessoa.getListaEndereco().stream().
                 map(t -> EnderecoResponseDTO.valueOf(t)).toList(),
-                pessoa.getPerfil(),
                 pessoa.getNomeImagem());
 
     }

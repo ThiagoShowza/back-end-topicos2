@@ -21,6 +21,9 @@ public class Usuario extends DefaultEntity{
     @Size(min = 4, max = 25, message = "A senha deve ter entre de 4 a 25 caracteres")
     private String senha;
 
+    @NotBlank
+    private Perfil perfil;
+
     @OneToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
