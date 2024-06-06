@@ -75,16 +75,23 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
         double valorTotal = pedido.getItens().stream()
                 .mapToDouble(item -> item.getJoia().getPreco() * item.getQuantidade())
                 .sum();
+// Verificar se já existe um pagamento associado ao pedido
+        Pagamento pagamento = pagamentoRepository.findByPedidoId(pedido.getId());
+        if (pagamento == null) {
+            // Criar e persistir um novo Pagamento se não existir
+            pagamento = new Pagamento();
+            pagamento.setPedido(pedido);
+            pagamento.setValorTotal(valorTotal);
+            pagamento.setMetodo(null);
+            pagamento.setStatus(StatusPagamento.PENDENTE);
+            pagamento.setDataPagamento(LocalDate.now());
 
-        // Criar e persistir um novo Pagamento
-        Pagamento pagamento = new Pagamento();
-        pagamento.setPedido(pedido);
-        pagamento.setValorTotal(valorTotal);
-        pagamento.setMetodo(null);
-        pagamento.setStatus(StatusPagamento.PENDENTE);
-        pagamento.setDataPagamento(LocalDate.now());
-
-        pagamentoRepository.persist(pagamento);
+            pagamentoRepository.persist(pagamento);
+        } else {
+            // Atualizar o valor total do pagamento existente
+            pagamento.setValorTotal(valorTotal);
+            pagamentoRepository.persist(pagamento);
+        }
 
         return toResponseDTO(itemPedido);
     }

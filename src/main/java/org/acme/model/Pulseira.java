@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,7 @@ public class Pulseira extends Joia {
 
     private String imgPulseira;
 
-    @NotBlank(message = "Informe o tipo de Fecho")
+    @NotNull(message = "Informe o tipo de Fecho")
     private TipoFecho tipoFecho;
 
     @NotBlank(message = "Informe o tipo de Elo")

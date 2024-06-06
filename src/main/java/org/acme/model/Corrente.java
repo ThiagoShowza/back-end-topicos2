@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,7 @@ public class Corrente extends Joia {
     @NotBlank(message = "Informe o comprimento da corrente")
     private Double comprimento;
 
-    @NotBlank(message = "Informe o tipo de Fecho")
+    @NotNull(message = "Informe o tipo de Fecho")
     private TipoFecho tipofecho;
 
     @NotBlank(message = "Informe o tipo de Elo")
