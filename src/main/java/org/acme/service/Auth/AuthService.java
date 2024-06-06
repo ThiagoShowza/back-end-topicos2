@@ -9,4 +9,6 @@ public interface AuthService {
     public LoginResponseDTO findByLogin(String login);
 
     public LoginResponseDTO findByEmail(String email);
+
+    public void trocarSenha(String email, String senha);
 }

@@ -64,4 +64,18 @@ public class AuthResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar o usuário logado").build();
         }
     }
+
+    @PUT
+    @Path("/trocarSenha")
+    @RolesAllowed("Usuario")
+    public Response trocarSenha(@QueryParam("novaSenha") String novaSenha) {
+        try {
+            String email = securityIdentity.getPrincipal().getName();
+            authService.trocarSenha(email, novaSenha);
+            return Response.ok("Senha alterada com sucesso").build();
+        } catch (Exception e) {
+            Log.info("Erro ao trocar a senha: " + e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro ao trocar a senha").build();
+        }
+    }
 }

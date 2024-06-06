@@ -2,6 +2,7 @@ package org.acme.service.Auth;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
 import org.acme.dto.Login.LoginDTO;
 import org.acme.dto.Login.LoginResponseDTO;
@@ -54,5 +55,17 @@ public class AuthServiceImpl implements AuthService {
             throw new ValidationException("login inválido!");
 
         return LoginResponseDTO.valueOf(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void trocarSenha(String email, String senha) {
+        Usuario usuario = repository.findByEmail(email);
+        if (usuario == null) {
+            throw new ValidationException("Usuário não encontrado!");
+        }
+        String hashedPassword = hashService.getHashSenha(senha);
+        usuario.setSenha(hashedPassword);
+        usuarioRepository.persist(usuario);
     }
 }
