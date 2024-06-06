@@ -33,6 +33,7 @@ public class AuthResource {
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(AuthResource.class));
     @POST
+    @RolesAllowed({"Usuario", "Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(LoginDTO authDTO) {
         try {
@@ -46,7 +47,7 @@ public class AuthResource {
     }
 
     @GET
-    @RolesAllowed({"Usuario"})
+    @RolesAllowed({"Usuario", "Admin"})
     @Path("/usuarioLogado")
     public Response getUsuario() {
         try {
@@ -67,7 +68,7 @@ public class AuthResource {
 
     @PUT
     @Path("/trocarSenha")
-    @RolesAllowed("Usuario")
+    @RolesAllowed({"Usuario", "Admin"})
     public Response trocarSenha(@QueryParam("novaSenha") String novaSenha) {
         try {
             String email = securityIdentity.getPrincipal().getName();

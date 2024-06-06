@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,6 +27,7 @@ public class CorrenteResource {
     CorrenteService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert (CorrenteDTO dto){
         CorrenteResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
