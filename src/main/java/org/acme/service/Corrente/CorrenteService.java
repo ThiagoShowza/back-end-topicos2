@@ -10,6 +10,8 @@ public interface CorrenteService {
 
     public CorrenteResponseDTO update(CorrenteDTO dto, Long id);
 
+    public CorrenteResponseDTO updateNomeImagem(Long id, String nomeImagem);
+
     public void delete(Long id);
 
     public CorrenteResponseDTO findById(Long id);

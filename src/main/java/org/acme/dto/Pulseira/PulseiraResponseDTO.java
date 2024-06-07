@@ -9,7 +9,7 @@ public record PulseiraResponseDTO(
 
         Long id,
         Double comprimento,
-        String imgPulseira,
+        String nomeImagem,
         TipoFecho tipoFecho,
         TipoElo tipoElo,
         PingenteResponseDTO pingente
@@ -21,7 +21,7 @@ public record PulseiraResponseDTO(
         return new PulseiraResponseDTO(
                 pulseira.getId(),
                 pulseira.getComprimento(),
-                pulseira.getImgPulseira(),
+                pulseira.getNomeImagem(),
                 pulseira.getTipoFecho(),
                 pulseira.getTipoElo(),
                 PingenteResponseDTO.valueOf(pulseira.getPingente()));

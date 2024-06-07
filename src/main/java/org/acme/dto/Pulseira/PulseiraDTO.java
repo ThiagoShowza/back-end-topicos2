@@ -10,7 +10,7 @@ public record PulseiraDTO(
 
         @NotBlank(message = "Insira o nome do produto")
         Double comprimento,
-        String imgPulseira,
+        String nomeImagem,
         @NotNull(message = "Insira a quantidade de estoque")
         Integer idFecho,
         Integer idElo,

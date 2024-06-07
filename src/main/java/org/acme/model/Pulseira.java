@@ -18,7 +18,7 @@ public class Pulseira extends Joia {
     @NotBlank(message = "Informe o comprimento da Pulseira")
     private Double comprimento;
 
-    private String imgPulseira;
+    private String nomeImagem;
 
     @NotNull(message = "Informe o tipo de Fecho")
     private TipoFecho tipoFecho;

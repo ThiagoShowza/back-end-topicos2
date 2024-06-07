@@ -3,6 +3,8 @@ package org.acme.service.Pingente;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
+
 import org.acme.dto.Pingente.PingenteDTO;
 import org.acme.dto.Pingente.PingenteResponseDTO;
 import org.acme.model.Cor;
@@ -48,18 +50,40 @@ public class PingenteServiceImpl implements PingenteService {
     }
 
     @Override
+    @Transactional
     public PingenteResponseDTO update(PingenteDTO dto, Long id) {
-        return null;
+        Pingente pingenteExistente = repository.findById(id);
+    
+        if (pingenteExistente == null) {
+            throw new NotFoundException("Pingente não encontrado com o ID: " + id);
+        }
+    
+        pingenteExistente.setNome(dto.nome());
+        pingenteExistente.setCor(Cor.valueOf(dto.idCor()));
+        pingenteExistente.setMaterial(Material.valueOf(dto.idMaterial()));
+    
+        // Atualizar as pedras preciosas associadas ao pingente
+        List<PedraPreciosa> listPedraPreciosa = pedraPreciosaRepository.findByIdIfExists(dto.idPedrasPreciosas());
+        if (listPedraPreciosa.size() == dto.idPedrasPreciosas().size()) {
+            pingenteExistente.setPedraPreciosa(listPedraPreciosa);
+        } else {
+            System.out.println("Alguma pedra preciosa não foi encontrada");
+        }
+    
+        repository.persist(pingenteExistente);
+    
+        return PingenteResponseDTO.valueOf(pingenteExistente);
     }
 
     @Override
     public void delete(Long id) {
-
+        if(!repository.deleteById(id))
+            throw new NotFoundException();
     }
 
     @Override
     public PingenteResponseDTO findById(Long id) {
-        return null;
+        return PingenteResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Corrente extends Joia {
     @NotBlank(message = "Informe o tipo de Elo")
     private TipoElo tipoElo;
 
-    private String imgCorrente;
+    private String nomeImagem;
 
     @OneToOne(mappedBy = "corrente", cascade = CascadeType.ALL, orphanRemoval = true)
     private Pingente pingente;

@@ -10,6 +10,8 @@ public interface PulseiraService {
 
     public PulseiraResponseDTO update(PulseiraDTO dto, Long id);
 
+    public PulseiraResponseDTO updateNomeImagem(Long id, String nomeImagem);
+
     public void delete(Long id);
 
     public PulseiraResponseDTO findById(Long id);

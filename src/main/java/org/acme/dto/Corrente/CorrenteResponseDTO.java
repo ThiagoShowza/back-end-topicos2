@@ -11,7 +11,7 @@ public record CorrenteResponseDTO(
         Double comprimento,
         TipoFecho tipoFecho,
         TipoElo tipoElo,
-        String imgCorrente,
+        String nomeImagem,
         PingenteResponseDTO pingente) {
 
     public static CorrenteResponseDTO valueOf(Corrente corrente){
@@ -20,7 +20,7 @@ public record CorrenteResponseDTO(
             corrente.getComprimento(),
             corrente.getTipofecho(),
             corrente.getTipoElo(),
-            corrente.getImgCorrente(),
+            corrente.getNomeImagem(),
             PingenteResponseDTO.valueOf(corrente.getPingente()));
     }
 

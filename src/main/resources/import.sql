@@ -96,17 +96,17 @@ INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
 VALUES ('Corrente de Prata', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
 
 -- Inserir uma nova pulseira
-INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
+INSERT INTO Pulseira (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
 VALUES (1, 20.0, 'https://image.lexica.art/full_webp/064a23ad-12ec-424e-b99f-b1136fbe91c9', 1, 1);
 
-INSERT INTO Pulseira (joia_id, comprimento, imgPulseira, tipoFecho, tipoElo)
+INSERT INTO Pulseira (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
 VALUES (2, 20.0, 'https://image.lexica.art/full_webp/1736304c-68d6-47b2-b335-985ab8a5e0af', 1, 1);
 
 -- Inserir novas correntes
-INSERT INTO Corrente (joia_id, comprimento, imgCorrente, tipoFecho, tipoElo)
+INSERT INTO Corrente (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
 VALUES (4, 20.0, 'https://image.lexica.art/full_webp/29ce2f8c-f391-4e82-9269-6d3a9b7d7dcd', 1, 1); -- Certifique-se de que joia_id=1 existe
 
-INSERT INTO Corrente (joia_id, comprimento, imgCorrente, tipoFecho, tipoElo)
+INSERT INTO Corrente (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
 VALUES (5, 20.0, 'https://image.lexica.art/full_webp/5693226b-9c22-4fb3-ba68-abeaacaa24ca', 1, 1); -- Certifique-se de que joia_id=2 existe
 
 -- Inserir novos pingentes com referências corretas
@@ -143,19 +143,21 @@ VALUES ('Coleção de Maria', 'Uma coleção de Maria', 2);
 INSERT INTO Usuario (email, senha, perfil, pessoa_id)
 VALUES ('joao@gmail.com', 'w9pDMz7dZ7REE5f8MukQDK59A9wX6hwL4TlUhqGQDTd2BcHc7VFQdmybnvJjhSljaLbL85+e8osqfvj9OQa2Hw==', 1, 1);
 
+
+
 -- INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
 -- VALUES ('Anel de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
 --
 -- -- Inserir uma nova pulseira sem pingente
--- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo)
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, nomeImagem, tipoFecho, tipoElo)
 -- VALUES ('Pulseira de Ouro', 1, 'Pulseira de ouro', 500.00, 20, 1, 10.5, 20.0, 'img/pulseira1.jpg', 1, 1);
 --
 -- -- Inserir uma nova pulseira com pingente associado
--- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo, pulseira_id)
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, nomeImagem, tipoFecho, tipoElo, pulseira_id)
 -- VALUES ('Pulseira de Prata com Pingente', 1, 'Pulseira de prata com pingente de diamante', 350.00, 15, 2, 8.0, 18.5, 'img/pulseira2.jpg', 2, 2, 1);
 
 
 
 -- -- Inserir uma nova pulseira com pingente associado (substitua pulseira_id pelo nome da coluna que representa a chave estrangeira para pingente na tabela Pulseira)
--- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, imgPulseira, tipoFecho, tipoElo, pulseira_id)
+-- INSERT INTO Pulseira (nome, material, descricao, preco, estoque, cor, peso, comprimento, nomeImagem, tipoFecho, tipoElo, pulseira_id)
 -- VALUES ('Pulseira de Prata com Pingente', 1, 'Pulseira de prata com pingente de diamante', 350.00, 15, 2, 8.0, 18.5, 'img/pulseira2.jpg', 2, 2, 1);
