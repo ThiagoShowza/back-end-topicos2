@@ -5,7 +5,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.acme.dto.ItemPedido.ItemPedidoDTO;
-import org.acme.dto.ItemPedidoResponseDTO;
+import org.acme.dto.ItemPedido.ItemPedidoResponseDTO;
 import org.acme.service.ItemPedido.ItemPedidoService;
 
 import java.util.List;

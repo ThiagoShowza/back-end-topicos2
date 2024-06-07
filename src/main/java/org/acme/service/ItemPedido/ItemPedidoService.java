@@ -2,7 +2,7 @@ package org.acme.service.ItemPedido;
 
 import jakarta.validation.Valid;
 import org.acme.dto.ItemPedido.ItemPedidoDTO;
-import org.acme.dto.ItemPedidoResponseDTO;
+import org.acme.dto.ItemPedido.ItemPedidoResponseDTO;
 import org.acme.dto.Joia.JoiaDTO;
 import org.acme.dto.Joia.JoiaResponseDTO;
 import org.acme.model.ItemPedido;

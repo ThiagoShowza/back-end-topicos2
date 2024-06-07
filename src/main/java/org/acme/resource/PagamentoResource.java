@@ -14,8 +14,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import org.acme.dto.Pagamento.PagamentoDTO;
-import org.acme.dto.PagamentoResponseDTO;
-import org.acme.service.PagamentoService;
+import org.acme.dto.Pagamento.PagamentoResponseDTO;
+import org.acme.service.Pagamento.PagamentoService;
 
 @Path("/pagamentos")
 @Produces(MediaType.APPLICATION_JSON)

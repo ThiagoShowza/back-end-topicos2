@@ -3,7 +3,7 @@ package org.acme.service.ItemPedido;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import org.acme.dto.ItemPedido.ItemPedidoDTO;
-import org.acme.dto.ItemPedidoResponseDTO;
+import org.acme.dto.ItemPedido.ItemPedidoResponseDTO;
 import org.acme.dto.Joia.JoiaResponseDTO;
 import org.acme.model.*;
 import jakarta.inject.Inject;

@@ -1,4 +1,4 @@
-package org.acme.dto;
+package org.acme.dto.Pagamento;
 
 import java.time.LocalDate;
 

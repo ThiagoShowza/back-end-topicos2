@@ -4,14 +4,13 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.acme.dto.Pagamento.PagamentoDTO;
-import org.acme.dto.PagamentoResponseDTO;
+import org.acme.dto.Pagamento.PagamentoResponseDTO;
 import org.acme.dto.Pedido.PedidoResponseDTO;
 import org.acme.model.Pagamento;
 import org.acme.model.Pedido;
 import org.acme.model.StatusPagamento;
 import org.acme.repository.PagamentoRespository;
 import org.acme.repository.PedidoRepository;
-import org.acme.service.PagamentoService;
 
 import java.time.LocalDate;
 import java.util.List;

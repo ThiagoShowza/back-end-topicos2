@@ -1,4 +1,4 @@
-package org.acme.dto;
+package org.acme.dto.ItemPedido;
 
 import java.util.List;
 import org.acme.model.ItemPedido;

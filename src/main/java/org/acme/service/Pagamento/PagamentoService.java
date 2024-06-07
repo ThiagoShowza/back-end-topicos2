@@ -1,9 +1,9 @@
-package org.acme.service;
+package org.acme.service.Pagamento;
 
 import java.util.List;
 
 import org.acme.dto.Pagamento.PagamentoDTO;
-import org.acme.dto.PagamentoResponseDTO;
+import org.acme.dto.Pagamento.PagamentoResponseDTO;
 
 public interface PagamentoService {
 
