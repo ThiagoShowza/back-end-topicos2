@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,6 +27,7 @@ public class PagamentoResource {
     PagamentoService service;
 
     @POST
+    @RolesAllowed({"Admin", "Usuario"})
     @Transactional
     public Response insert(PagamentoDTO dto) {
         PagamentoResponseDTO retorno = service.insert(dto);
@@ -33,6 +35,7 @@ public class PagamentoResource {
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update(PagamentoDTO dto, @PathParam("id") Long id) {
@@ -41,6 +44,7 @@ public class PagamentoResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
@@ -49,17 +53,20 @@ public class PagamentoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();

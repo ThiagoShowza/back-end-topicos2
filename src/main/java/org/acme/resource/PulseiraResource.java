@@ -40,12 +40,14 @@ public class PulseiraResource {
 
     @POST
     @Transactional
-    public Response insert(PulseiraDTO dto) {
+    @RolesAllowed({"Admin"})
+    public Response insert (PulseiraDTO dto){
         PulseiraResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update(PulseiraDTO dto, @PathParam("id") Long id) {
@@ -54,6 +56,7 @@ public class PulseiraResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
@@ -63,11 +66,13 @@ public class PulseiraResource {
     }
 
     @GET
-    public Response findAll() {
+    @RolesAllowed({"Admin", "Usuario"})
+    public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();

@@ -1,8 +1,7 @@
 package org.acme.resource;
-
 import java.io.File;
 import java.io.IOException;
-
+import jakarta.annotation.security.RolesAllowed;
 import org.acme.dto.Pessoa.PessoaDTO;
 import org.acme.dto.Pessoa.PessoaResponseDTO;
 import org.acme.form.ImagemForm;
@@ -44,12 +43,14 @@ public class PessoaResource {
     JsonWebToken jwt;
 
     @POST
-    public Response insert(PessoaDTO dto) {
-        PessoaResponseDTO retorno = service.insert(dto);
+    @RolesAllowed({"Admin"})
+    public Response insert (PessoaDTO dto){
+       PessoaResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update(PessoaDTO dto, @PathParam("id") Long id) {
@@ -58,6 +59,7 @@ public class PessoaResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
@@ -67,17 +69,20 @@ public class PessoaResource {
     }
 
     @GET
-    public Response findAll() {
+    @RolesAllowed({"Admin"})
+    public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();

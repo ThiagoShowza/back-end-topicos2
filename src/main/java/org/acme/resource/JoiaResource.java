@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.acme.dto.Joia.JoiaDTO;
 import org.acme.dto.Joia.JoiaResponseDTO;
 
@@ -27,12 +28,14 @@ public class JoiaResource {
     JoiaService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(JoiaDTO dto) {
         JoiaResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update(JoiaDTO dto, @PathParam("id") Long id) {
@@ -41,6 +44,7 @@ public class JoiaResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
@@ -49,12 +53,13 @@ public class JoiaResource {
     }
 
     @GET
-
+    @RolesAllowed({"Admin", "Usuario"})
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
 
     public Response findById(@PathParam("id") Long id) {
@@ -62,6 +67,7 @@ public class JoiaResource {
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();

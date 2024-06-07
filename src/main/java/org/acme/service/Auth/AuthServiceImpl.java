@@ -1,13 +1,18 @@
 package org.acme.service.Auth;
 
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
+import org.acme.dto.Cadastro.CadastroDTO;
 import org.acme.dto.Login.LoginDTO;
 import org.acme.dto.Login.LoginResponseDTO;
+import org.acme.model.Perfil;
+import org.acme.model.Pessoa;
 import org.acme.model.Usuario;
 import org.acme.repository.AuthRepository;
+import org.acme.repository.PessoaRepository;
 import org.acme.repository.UsuarioRepository;
 import org.acme.service.Hash.HashService;
 import org.acme.service.Jwt.JwtService;
@@ -19,6 +24,9 @@ public class AuthServiceImpl implements AuthService {
     AuthRepository repository;
     @Inject
     UsuarioRepository usuarioRepository;
+
+    @Inject
+    PessoaRepository pessoaRepository;
 
     @Inject
     HashService hashService;
@@ -37,6 +45,28 @@ public class AuthServiceImpl implements AuthService {
 
         String token = jwtService.generateJwt(new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), usuario.getPerfil().getLabel(), usuario.getSenha()));
         return new LoginResponseDTO(usuario.getId(), usuario.getEmail(), usuario.getPessoa().getNome(), usuario.getPerfil().getLabel(), token);
+    }
+
+    @Override
+    @Transactional
+    public LoginResponseDTO cadastro(CadastroDTO authDTO) {
+        Pessoa novaPessoa = new Pessoa();
+        novaPessoa.setNome(authDTO.nome());
+        novaPessoa.setCpf(authDTO.cpf());
+        pessoaRepository.persist(novaPessoa);
+
+        Usuario novoUsuario = new Usuario();
+        novoUsuario.setEmail(authDTO.email());
+        novoUsuario.setSenha(authDTO.senha());
+        novoUsuario.setPessoa(novaPessoa);
+        novoUsuario.setPerfil(Perfil.USER);
+        usuarioRepository.persist(novoUsuario);
+
+        // Gerar token JWT
+        String token = jwtService.generateJwt(new LoginResponseDTO(novoUsuario.getId(), novoUsuario.getEmail(), novaPessoa.getNome(), novoUsuario.getPerfil().getLabel(), novoUsuario.getSenha()));
+
+        // Criar e retornar o DTO de resposta do login com o token JWT
+        return new LoginResponseDTO(novoUsuario.getId(), novoUsuario.getEmail(), novaPessoa.getNome(), novoUsuario.getPerfil().getLabel(), token);
     }
 
     @Override
@@ -60,6 +90,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public void trocarSenha(String email, String senha) {
+        Log.info("Email: " + email + "senha: " + senha);
         Usuario usuario = repository.findByEmail(email);
         if (usuario == null) {
             throw new ValidationException("Usuário não encontrado!");
