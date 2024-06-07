@@ -16,6 +16,6 @@ public class Anel extends Joia{
     @NotBlank(message = "Informe o tamanho do anel")
     private Double tamanho;
 
-    private String imgAnel;
+    private String nomeImagem;
 
 }

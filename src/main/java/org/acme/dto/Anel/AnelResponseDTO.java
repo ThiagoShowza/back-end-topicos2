@@ -4,17 +4,17 @@ import org.acme.model.Anel;
 
 public record AnelResponseDTO(
 
-        Long id,
+    Long id,
     Double tamanho,
-    String imgAnel
+    String nomeImagem
 
 ) {
 
 public static AnelResponseDTO valueOf(Anel anel){
 
     return new AnelResponseDTO(
-            anel.getId(),
+        anel.getId(),
         anel.getTamanho(),
-        anel.getImgAnel());
+        anel.getNomeImagem());
 }
 }

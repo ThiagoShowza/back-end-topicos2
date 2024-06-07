@@ -13,6 +13,8 @@ public interface PessoaService {
 
     public void delete(Long id);
 
+    public PessoaResponseDTO updateNomeImagem(Long id, String nomeImagem);
+
     public PessoaResponseDTO findById(Long id);
 
     public List<PessoaResponseDTO> findByNome(String nome);

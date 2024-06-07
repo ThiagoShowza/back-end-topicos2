@@ -56,4 +56,11 @@ public class PessoaServiceImpl implements PessoaService {
         return repository.listAll().stream()
                 .map(e -> PessoaResponseDTO.valueOf(e)).toList();
     }
+
+    @Override
+    public PessoaResponseDTO updateNomeImagem(Long id, String nomeImagem) {
+        Pessoa pessoa = repository.findById(id);
+        pessoa.setNomeImagem(nomeImagem);
+        return PessoaResponseDTO.valueOf(pessoa);
+    }
 }

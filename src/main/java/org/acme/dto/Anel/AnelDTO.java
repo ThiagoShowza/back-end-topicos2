@@ -10,6 +10,6 @@ public record AnelDTO(
 
         @NotBlank(message = "Insira o tamanho do anel")
         Double tamanho,
-        String imgAnel
+        String nomeImagem
 ) {
 }

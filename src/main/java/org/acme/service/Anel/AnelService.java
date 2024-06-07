@@ -12,6 +12,8 @@ public interface AnelService {
 
     public void delete(Long id);
 
+    public AnelResponseDTO updateNomeImagem(Long id, String nomeImagem);
+
     public AnelResponseDTO findById(Long id);
 
     public List<AnelResponseDTO> findByAll();

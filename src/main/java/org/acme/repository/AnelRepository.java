@@ -6,4 +6,6 @@ import org.acme.model.Anel;
 
 @ApplicationScoped
 public class AnelRepository implements PanacheRepository<Anel> {
+
+    
 }

@@ -123,7 +123,7 @@ INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
 VALUES ('Pingente 2', 1, 1, 2, NULL); -- Referenciando pulseira_id=2
 
 -- Inserir um novo anel
-INSERT INTO Anel (joia_id, tamanho, imgAnel)
+INSERT INTO Anel (joia_id, tamanho, nomeImagem)
 VALUES (3, 20.0, 'https://image.lexica.art/full_webp/04889d2a-c53d-4369-8ff5-9f4de03817f0');
 
 -- Inserir algumas pessoas
