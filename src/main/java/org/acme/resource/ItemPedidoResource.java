@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -19,12 +20,14 @@ public class ItemPedidoResource {
     ItemPedidoService itemPedidoService;
 
     @POST
+    @RolesAllowed({"Admin", "Usuario"})
     public Response insert(ItemPedidoDTO dto) {
         ItemPedidoResponseDTO retorno = itemPedidoService.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response update(ItemPedidoDTO dto, @PathParam("id") Long id) {
         ItemPedidoResponseDTO retorno = itemPedidoService.update(dto, id);
@@ -32,6 +35,7 @@ public class ItemPedidoResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         itemPedidoService.delete(id);
@@ -39,6 +43,7 @@ public class ItemPedidoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         ItemPedidoResponseDTO retorno = itemPedidoService.findById(id);
@@ -46,6 +51,7 @@ public class ItemPedidoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     public Response findAll() {
         List<ItemPedidoResponseDTO> retorno = itemPedidoService.findByAll();
         return Response.ok(retorno).build();

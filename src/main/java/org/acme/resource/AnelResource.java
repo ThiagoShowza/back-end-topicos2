@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,12 +27,14 @@ public class AnelResource {
     AnelService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert (AnelDTO dto){
         AnelResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update (AnelDTO dto, @PathParam("id") Long id){
@@ -41,6 +44,7 @@ public class AnelResource {
 
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete (@PathParam("id") Long id){
@@ -51,11 +55,13 @@ public class AnelResource {
 
 
     @GET
+    @RolesAllowed({"Usuario", "Admin"})
     public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(findById(id)).build();

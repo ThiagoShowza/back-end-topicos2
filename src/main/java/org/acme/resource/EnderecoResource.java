@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.acme.dto.Endereco.EnderecoDTO;
 import org.acme.dto.Endereco.EnderecoResponseDTO;
 import org.acme.service.Endereco.EnderecoService;
@@ -27,12 +28,14 @@ public class EnderecoResource {
     EnderecoService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(@Valid EnderecoDTO dto) {
         EnderecoResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response update(EnderecoDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
@@ -40,6 +43,7 @@ public class EnderecoResource {
     }
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
@@ -47,18 +51,21 @@ public class EnderecoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/search/bairro/{bairro}")
     public Response findByNome(@PathParam("bairro") String bairro) {
         return Response.ok(service.findByBairro(bairro)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/{All}")
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
