@@ -27,7 +27,7 @@ public class PagamentoResource {
     PagamentoService service;
 
     @POST
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin", "Usuario"})
     @Transactional
     public Response insert(PagamentoDTO dto) {
         PagamentoResponseDTO retorno = service.insert(dto);
