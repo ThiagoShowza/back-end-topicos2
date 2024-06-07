@@ -33,7 +33,6 @@ public class AuthResource {
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(AuthResource.class));
     @POST
-    @RolesAllowed({"Usuario", "Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(LoginDTO authDTO) {
         try {
