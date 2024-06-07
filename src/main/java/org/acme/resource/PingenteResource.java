@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -26,12 +27,14 @@ public class PingenteResource {
     PingenteService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert (PingenteDTO dto){
         PingenteResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update (PingenteDTO dto, @PathParam("id") Long id){
@@ -41,6 +44,7 @@ public class PingenteResource {
 
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete (@PathParam("id") Long id){
@@ -51,11 +55,13 @@ public class PingenteResource {
 
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(findById(id)).build();

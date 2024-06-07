@@ -34,6 +34,7 @@ public class CorrenteResource {
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update (CorrenteDTO dto, @PathParam("id") Long id){
@@ -43,6 +44,7 @@ public class CorrenteResource {
 
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete (@PathParam("id") Long id){
@@ -53,11 +55,13 @@ public class CorrenteResource {
 
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(findById(id)).build();

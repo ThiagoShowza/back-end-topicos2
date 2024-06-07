@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.acme.dto.Pessoa.PessoaDTO;
 import org.acme.dto.Pessoa.PessoaResponseDTO;
 
@@ -27,12 +28,14 @@ public class PessoaResource {
     PessoaService service;
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert (PessoaDTO dto){
        PessoaResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response update (PessoaDTO dto, @PathParam("id") Long id){
@@ -42,6 +45,7 @@ public class PessoaResource {
 
 
     @DELETE
+    @RolesAllowed({"Admin"})
     @Transactional
     @Path("/{id}")
     public Response delete (@PathParam("id") Long id){
@@ -52,17 +56,20 @@ public class PessoaResource {
 
 
     @GET
+    @RolesAllowed({"Admin"})
     public Response findAll(){
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id){
         return Response.ok(findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();
