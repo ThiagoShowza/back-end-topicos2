@@ -4,6 +4,7 @@ import io.quarkus.logging.Log;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
+import org.acme.dto.Cadastro.CadastroDTO;
 import org.acme.dto.Login.LoginDTO;
 import org.acme.dto.Login.LoginResponseDTO;
 import org.acme.model.Usuario;
@@ -32,6 +33,22 @@ public class AuthResource {
 
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(AuthResource.class));
+
+    @POST
+    @RolesAllowed({"Usuario", "Admin"})
+    @Path("/cadastro")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response cadastro(CadastroDTO authDTO) {
+        try {
+            LoginResponseDTO usuario = authService.cadastro(authDTO);
+            return Response.ok(usuario)
+                    .header("Authorization", usuario.token())
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+        }
+    }
+
     @POST
     @RolesAllowed({"Usuario", "Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
