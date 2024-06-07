@@ -1,5 +1,6 @@
 package org.acme.service.Auth;
 
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -89,6 +90,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public void trocarSenha(String email, String senha) {
+        Log.info("Email: " + email + "senha: " + senha);
         Usuario usuario = repository.findByEmail(email);
         if (usuario == null) {
             throw new ValidationException("Usuário não encontrado!");
