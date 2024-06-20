@@ -1,13 +1,18 @@
 package org.acme.service.ItemPedido;
 
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.acme.dto.ItemPedido.ItemPedidoDTO;
 import org.acme.dto.ItemPedido.ItemPedidoResponseDTO;
 import org.acme.dto.Joia.JoiaResponseDTO;
+import org.acme.dto.Login.LoginResponseDTO;
 import org.acme.model.*;
 import jakarta.inject.Inject;
 import org.acme.repository.*;
+import org.acme.service.Auth.AuthService;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +20,12 @@ import java.util.List;
 
 
 @ApplicationScoped
-public class ItemPedidoServiceImpl implements ItemPedidoService{
+public class ItemPedidoServiceImpl implements ItemPedidoService {
+    @Inject
+    JsonWebToken jwt;
+
+    @Inject
+    AuthService authService;
 
     @Inject
     ItemPedidoRepository itemPedidoRepository;
@@ -35,18 +45,32 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
     @Override
     @Transactional
     public ItemPedidoResponseDTO insert(ItemPedidoDTO dto) {
-        // Primeiro, tentamos encontrar um Pedido existente para o cliente
-        Pedido pedido = pedidoRepository.findByPessoaId(1L);
+        String email = jwt.getSubject();
+        Log.info("Pegando o usuário logado email: " + email);
 
-        // Se não houver um Pedido existente, criamos um novo
+        LoginResponseDTO usuarioDTO = authService.findByEmail(email);
+        if (usuarioDTO == null) {
+            throw new EntityNotFoundException("Usuário não encontrado com o email: " + email);
+        }
+
+        // Obter todos os itens de pedido associados ao usuário
+        List<ItemPedido> itemPedidos = itemPedidoRepository.findByPessoaId(usuarioDTO.pessoa().id());
+
+        Pedido pedido = null;
+
+        // Verificar se já existe um pedido com itens
+        if (!itemPedidos.isEmpty()) {
+            pedido = itemPedidos.get(0).getPedido();
+        }
+
+        // Se não houver um pedido com itens, criar um novo pedido
         if (pedido == null) {
             pedido = new Pedido();
-            Pessoa cliente = pessoaRepository.findById(1L);
+            Pessoa cliente = pessoaRepository.findById(usuarioDTO.pessoa().id());
             if (cliente == null) {
                 throw new IllegalArgumentException("Cliente não encontrado");
             }
             pedido.setPessoa(cliente);
-            // Persistir o novo Pedido
             pedidoRepository.persist(pedido);
         }
 
@@ -75,7 +99,8 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
         double valorTotal = pedido.getItens().stream()
                 .mapToDouble(item -> item.getJoia().getPreco() * item.getQuantidade())
                 .sum();
-// Verificar se já existe um pagamento associado ao pedido
+
+        // Verificar se já existe um pagamento associado ao pedido
         Pagamento pagamento = pagamentoRepository.findByPedidoId(pedido.getId());
         if (pagamento == null) {
             // Criar e persistir um novo Pagamento se não existir
@@ -95,8 +120,6 @@ public class ItemPedidoServiceImpl implements ItemPedidoService{
 
         return toResponseDTO(itemPedido);
     }
-
-
 
     @Override
     @Transactional

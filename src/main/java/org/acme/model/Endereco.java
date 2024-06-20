@@ -28,7 +28,6 @@ public class Endereco extends DefaultEntity {
     @Column(nullable = false)
     private String cep;
 
-
     @Column(length = 8, nullable = false)
     @Positive(message = "O CEP não pode ser 0 ou negativo")
     private Integer numero;
@@ -44,4 +43,7 @@ public class Endereco extends DefaultEntity {
     @Column(length = 50)
     private String complemento;
 
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 }

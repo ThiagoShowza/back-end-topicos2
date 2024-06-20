@@ -6,8 +6,6 @@ import org.acme.dto.PedraPreciosa.PedraPreciosaResponseDTO;
 
 import java.util.List;
 
-
-
 public interface PedraPreciosaService {
 
     public PedraPreciosaResponseDTO insert(@Valid PedraPreciosaDTO dto);

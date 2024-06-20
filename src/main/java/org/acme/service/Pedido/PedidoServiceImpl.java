@@ -1,16 +1,18 @@
 package org.acme.service.Pedido;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.acme.dto.Login.LoginResponseDTO;
 import org.acme.dto.Pedido.PedidoDTO;
 import org.acme.dto.Pedido.PedidoResponseDTO;
-import org.acme.dto.Pessoa.PessoaResponseDTO;
 import org.acme.model.ItemPedido;
 import org.acme.model.Pedido;
 import org.acme.model.Pessoa;
 import jakarta.inject.Inject;
 import org.acme.repository.PedidoRepository;
 import org.acme.repository.PessoaRepository;
+import org.acme.service.Auth.AuthService;
 import org.acme.service.ItemPedido.ItemPedidoService;
 
 import java.util.List;
@@ -19,6 +21,10 @@ import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class PedidoServiceImpl implements PedidoService{
+
+    @Inject
+    AuthService authService;
+
     @Inject
     PedidoRepository pedidoRepository;
 
@@ -27,6 +33,24 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Inject
     ItemPedidoService itemPedidoService;
+
+    @Override
+    public List<PedidoResponseDTO> findPedidosUsuarioLogado(String email) {
+        // 1. Obter o usuário pelo email
+        LoginResponseDTO usuarioDTO = authService.findByEmail(email);
+        if (usuarioDTO == null) {
+            throw new EntityNotFoundException("Usuário não encontrado com o email: " + email);
+        }
+
+        // 2. Obter os pedidos associados ao usuário
+        Long usuarioPessoaId = usuarioDTO.pessoa().id(); // Supondo que o usuário tenha um ID único
+        List<Pedido> pedidos = pedidoRepository.findByPessoaId(usuarioPessoaId);
+
+        // 3. Mapear os pedidos para DTOs de resposta
+        return pedidos.stream()
+                .map(PedidoResponseDTO::valueOf) // Supondo que há um método estático valueOf em PedidoResponseDTO para conversão
+                .collect(Collectors.toList());
+    }
 
     @Override
     @Transactional

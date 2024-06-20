@@ -6,6 +6,8 @@ import org.acme.dto.Pedido.PedidoResponseDTO;
 import java.util.List;
 
 public interface PedidoService {
+
+    List<PedidoResponseDTO> findPedidosUsuarioLogado(String email);
     PedidoResponseDTO insert(PedidoDTO dto);
     PedidoResponseDTO update(PedidoDTO dto, Long id);
     void delete(Long id);

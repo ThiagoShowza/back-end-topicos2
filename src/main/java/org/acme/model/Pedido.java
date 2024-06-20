@@ -1,5 +1,6 @@
 package org.acme.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -18,6 +19,7 @@ public class Pedido extends DefaultEntity{
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<ItemPedido> itens;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ItemPedido> itens = new ArrayList<>();
+
 }

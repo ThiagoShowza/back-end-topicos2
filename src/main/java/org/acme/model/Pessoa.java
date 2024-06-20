@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -33,9 +34,8 @@ public class Pessoa extends DefaultEntity {
     @Past(message = "Data de nascimento inválida")
     private LocalDate dataNascimento;
 
-    @OneToMany
-    @JoinColumn(name = "id_endereco")
-    private List<Endereco> ListaEndereco;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Endereco> listaEndereco = new ArrayList<>();
 
     private String nomeImagem;
 
