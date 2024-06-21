@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Pedido extends DefaultEntity{
 
     @NotNull(message = "A pessoa associada ao pedido não pode ser nula")
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
 
