@@ -14,9 +14,14 @@ public class PedidoRepository implements PanacheRepository<Pedido> {
         return find("pessoa.email = ?1", email).list();
     }
 
+//    @Transactional
+//    public Pedido findByPessoaId(Long pessoaId) {
+//        return find("pessoa.id", pessoaId).firstResult();
+//    }
+
     @Transactional
-    public Pedido findByPessoaId(Long pessoaId) {
-        return find("pessoa.id", pessoaId).firstResult();
+    public List<Pedido> findByPessoaId(Long pessoaId) {
+        return find("pessoa.id", pessoaId).list();
     }
 
 }

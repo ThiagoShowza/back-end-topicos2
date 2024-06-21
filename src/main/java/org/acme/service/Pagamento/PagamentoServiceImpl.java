@@ -6,13 +6,16 @@ import jakarta.transaction.Transactional;
 import org.acme.dto.Pagamento.PagamentoDTO;
 import org.acme.dto.Pagamento.PagamentoResponseDTO;
 import org.acme.dto.Pedido.PedidoResponseDTO;
+import org.acme.model.ItemPedido;
 import org.acme.model.Pagamento;
 import org.acme.model.Pedido;
 import org.acme.model.StatusPagamento;
+import org.acme.repository.ItemPedidoRepository;
 import org.acme.repository.PagamentoRespository;
 import org.acme.repository.PedidoRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +27,9 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Inject
     PedidoRepository pedidoRepository;
+
+    @Inject
+    ItemPedidoRepository itemPedidoRepository;
 
     @Override
     @Transactional
@@ -40,9 +46,24 @@ public class PagamentoServiceImpl implements PagamentoService {
         // Persistir a atualização do pagamento
         pagamentoRepository.persist(pagamentoExistente);
 
+        // Buscar o pedido associado ao pagamento
+        Pedido pedido = pagamentoExistente.getPedido();
+        if (pedido != null) {
+            // Remover todos os itens do pedido
+            List<ItemPedido> itens = new ArrayList<>(pedido.getItens());
+            for (ItemPedido item : itens) {
+                itemPedidoRepository.delete(item);
+            }
+            // Esvaziar o array de itens do pedido
+            pedido.getItens().clear();
+            // Atualizar e persistir o pedido
+            pedidoRepository.persist(pedido);
+        }
+
         // Retornar o DTO do pagamento atualizado
         return PagamentoResponseDTO.valueOf(pagamentoExistente, pagamentoExistente.getPedido());
     }
+
 
 
     private double calcularValorTotal(Pedido pedido) {

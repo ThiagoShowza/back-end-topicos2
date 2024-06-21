@@ -59,7 +59,7 @@ public class JoiaResource {
     }
 
     @GET
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin", "Usuario"})
     @Path("/{id}")
 
     public Response findById(@PathParam("id") Long id) {

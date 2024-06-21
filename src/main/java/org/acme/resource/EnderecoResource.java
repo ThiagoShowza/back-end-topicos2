@@ -1,8 +1,10 @@
 package org.acme.resource;
 
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.transaction.Transactional;
 import org.acme.dto.Endereco.EnderecoDTO;
 import org.acme.dto.Endereco.EnderecoResponseDTO;
+import org.acme.dto.Pessoa.PessoaResponseDTO;
 import org.acme.service.Endereco.EnderecoService;
 
 import jakarta.inject.Inject;
