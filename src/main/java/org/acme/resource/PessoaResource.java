@@ -2,6 +2,8 @@ package org.acme.resource;
 import java.io.File;
 import java.io.IOException;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.Valid;
+import org.acme.dto.Endereco.EnderecoDTO;
 import org.acme.dto.Pessoa.PessoaDTO;
 import org.acme.dto.Pessoa.PessoaResponseDTO;
 import org.acme.form.ImagemForm;
@@ -56,6 +58,15 @@ public class PessoaResource {
     public Response update(PessoaDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
         return Response.status(Status.NO_CONTENT).build();
+    }
+
+    @POST
+    @Path("/{id}/enderecos")
+    @Transactional
+    @RolesAllowed({"Admin", "Usuario"})
+    public Response addEndereco(@PathParam("id") Long pessoaId, @Valid EnderecoDTO enderecoDTO) {
+        PessoaResponseDTO response = service.addEndereco(pessoaId, enderecoDTO);
+        return Response.ok(response).build();
     }
 
     @DELETE
