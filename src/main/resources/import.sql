@@ -79,21 +79,35 @@ VALUES (2, '8 quilates', 3, 1);
 
 -- Inserir uma nova joia
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
-VALUES ('Pulseira de Diamante', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+VALUES ('Pulseira de Diamante', 1, 'Pulseira de diamantes rosas', 1500.00, 10, 1, 5.2);
 
 -- Inserir uma nova joia
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
-VALUES ('Pulseira de Ouro', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+VALUES ('Pulseira de Ouro', 1, 'Pulseira sem diamante', 1500.00, 10, 1, 5.2);
+
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Pulseira de prata', 2, 'Pulseira de prata', 300.00, 10, 2, 5);
 
 -- Inserir uma nova joia
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
 VALUES ('Anel de Ouro', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
 
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
-VALUES ('Corrente de Ouro', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+VALUES ('Anel de prata', 2, 'Anel de prata com diamante central', 2000.00, 10, 2, 5.2);
 
 INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
-VALUES ('Corrente de Prata', 1, 'Anel de ouro com diamante central', 1500.00, 10, 1, 5.2);
+VALUES ('Anel', 2, 'Anel de prata liso', 200.00, 10, 2, 3);
+
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Corrente de Ouro', 1, 'Corrente sem joias', 1500.00, 10, 1, 5.2);
+
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Corrente de Prata', 1, 'Corrente fina', 1500.00, 10, 1, 5.2);
+
+INSERT INTO Joia (nome, material, descricao, preco, estoque, cor, peso)
+VALUES ('Corrente de Prata', 1, 'Corrente grossa', 1500.00, 10, 1, 5.2);
+
+
 
 -- Inserir uma nova pulseira
 INSERT INTO Pulseira (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
@@ -102,12 +116,32 @@ VALUES (1, 20.0, 'https://image.lexica.art/full_webp/064a23ad-12ec-424e-b99f-b11
 INSERT INTO Pulseira (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
 VALUES (2, 20.0, 'https://image.lexica.art/full_webp/1736304c-68d6-47b2-b335-985ab8a5e0af', 1, 1);
 
+INSERT INTO Pulseira (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
+VALUES (3, 15.0, 'https://image.lexica.art/full_webp/1736304c-68d6-47b2-b335-985ab8a5e0af', 2, 2);
+
+-- Inserir um novo anel
+INSERT INTO Anel (joia_id, tamanho, nomeImagem)
+VALUES (4, 20.0, 'https://image.lexica.art/full_webp/04889d2a-c53d-4369-8ff5-9f4de03817f0');
+
+INSERT INTO Anel (joia_id, tamanho, nomeImagem)
+VALUES (5, 16.0, 'https://image.lexica.art/full_webp/04889d2a-c53d-4369-8ff5-9f4de03817f0');
+
+INSERT INTO Anel (joia_id, tamanho, nomeImagem)
+VALUES (6, 14.0, 'https://image.lexica.art/full_webp/04889d2a-c53d-4369-8ff5-9f4de03817f0');
+
+
+
 -- Inserir novas correntes
 INSERT INTO Corrente (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
-VALUES (4, 20.0, 'https://image.lexica.art/full_webp/29ce2f8c-f391-4e82-9269-6d3a9b7d7dcd', 1, 1); -- Certifique-se de que joia_id=1 existe
+VALUES (7, 20.0, 'https://image.lexica.art/full_webp/29ce2f8c-f391-4e82-9269-6d3a9b7d7dcd', 1, 1); -- Certifique-se de que joia_id=1 existe
 
 INSERT INTO Corrente (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
-VALUES (5, 20.0, 'https://image.lexica.art/full_webp/5693226b-9c22-4fb3-ba68-abeaacaa24ca', 1, 1); -- Certifique-se de que joia_id=2 existe
+VALUES (8, 20.0, 'https://image.lexica.art/full_webp/5693226b-9c22-4fb3-ba68-abeaacaa24ca', 1, 1); -- Certifique-se de que joia_id=2 existe
+
+INSERT INTO Corrente (joia_id, comprimento, nomeImagem, tipoFecho, tipoElo)
+VALUES (9, 20.0, 'https://image.lexica.art/full_webp/5693226b-9c22-4fb3-ba68-abeaacaa24ca', 2, 2);
+
+
 
 -- Inserir novos pingentes com referências corretas
 INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
@@ -122,9 +156,7 @@ VALUES ('Pingente 4', 1, 1, 1, NULL); -- Referenciando pulseira_id=1
 INSERT INTO Pingente (nome, material, cor, pulseira_id, corrente_id)
 VALUES ('Pingente 2', 1, 1, 2, NULL); -- Referenciando pulseira_id=2
 
--- Inserir um novo anel
-INSERT INTO Anel (joia_id, tamanho, nomeImagem)
-VALUES (3, 20.0, 'https://image.lexica.art/full_webp/04889d2a-c53d-4369-8ff5-9f4de03817f0');
+
 
 -- Inserir algumas pessoas
 INSERT INTO Pessoa (nome, cpf, telefone, DataNascimento)

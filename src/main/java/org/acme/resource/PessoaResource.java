@@ -90,7 +90,7 @@ public class PessoaResource {
 
     @PATCH
     @Path("/upload/imagem/{id}")
-    // @RolesAllowed({ "Admin" })
+    @RolesAllowed({ "Admin" })
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response salvarImagem(@MultipartForm ImagemForm form, @PathParam("id") Long id) throws IOException {
         String nomeImagem;
@@ -104,7 +104,7 @@ public class PessoaResource {
 
     @GET
     @Path("/download/imagem/{nomeImagem}")
-    // @RolesAllowed({ "Admin" })
+    @RolesAllowed({ "Admin" })
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response download(@PathParam("nomeImagem") String nomeImagem) {
         // Obtain the File object corresponding to the requested image name
